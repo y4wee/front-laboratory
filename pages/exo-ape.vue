@@ -12,7 +12,7 @@ const images = [
     },
     {
         index: 2,
-        name: "keyboard en acier",
+        name: "sound and keyboard",
         url: "/img/img-4.jpg",
     },
     {
@@ -38,10 +38,34 @@ const transition = ref({
     indexCurrent: 0,
     indexNext: 0,
 });
+
+const yDelta = ref(0);
+const yStart = ref(0);
+const yEnd = ref(0);
+const ratio = ref(0);
+const touchStart = (e) => {
+    e.preventDefault();
+    yStart.value = e.touches[0].clientY;
+};
+const touchEnd = (e) => {
+    e.preventDefault();
+    yEnd.value = e.changedTouches[0].clientY;
+    ratio.value = yStart.value - yEnd.value;
+    if (ratio.value > 40 || ratio.value < -40) {
+        transitionStart();
+    }
+};
 const wheel = (e) => {
+    e.preventDefault();
+    yDelta.value = e.deltaY;
+    transitionStart();
+};
+
+const transitionStart = () => {
     let index = imageShowed.value[0];
+
     if (transition.value.state === false) {
-        if (e.deltaY > 0) {
+        if (yDelta.value > 0 || ratio.value < -40) {
             transition.value.down = true;
             if (index === images.length - 1) {
                 imageShowed.value.push(0);
@@ -49,7 +73,7 @@ const wheel = (e) => {
                 imageShowed.value.push(index + 1);
             }
         }
-        if (e.deltaY < 0) {
+        if (yDelta.value < 0 || ratio.value > 40) {
             transition.value.down = false;
             if (index === 0) {
                 imageShowed.value.push(5);
@@ -58,6 +82,8 @@ const wheel = (e) => {
             }
         }
         transition.value.state = true;
+        yDelta.value = 0;
+        ratio.value = 0;
     }
 };
 const transitionAfter = () => {
@@ -67,7 +93,12 @@ const transitionAfter = () => {
 </script>
 
 <template>
-    <div class="exoape" @wheel="wheel" @touchmove="wheel">
+    <div
+        class="exoape"
+        @wheel="wheel"
+        @touchstart="touchStart"
+        @touchend="touchEnd"
+    >
         <ExoapeFront
             :images="images"
             :imageShowed="imageShowed"
@@ -83,7 +114,7 @@ const transitionAfter = () => {
 </template>
 
 <style lang="scss">
-@import url("https://fonts.googleapis.com/css2?family=Anton&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Anton&family=Montserrat&display=swap");
 .exoape {
     position: relative;
     display: flex;
@@ -92,5 +123,6 @@ const transitionAfter = () => {
     width: 100vw;
     height: 100vh;
     overflow: hidden;
+    font-family: "Montserrat", sans-serif;
 }
 </style>

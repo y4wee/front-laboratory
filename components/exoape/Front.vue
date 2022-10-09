@@ -83,7 +83,7 @@ const animationTransition = () => {
             ".containerTitle p",
             {
                 opacity: 1,
-                duraiton: 0.45,
+                duration: 0.45,
                 ease: "circ.in",
             },
             "-=0.5"
@@ -115,7 +115,7 @@ watch(transition, (value) => {
                     </span>
                 </div>
                 <p>
-                    inspired by
+                    Inspired by
                     <a
                         href="https://dribbble.com/shots/18201219-Exo-Ape-Case-Hero-Header"
                         target="_blank"
@@ -157,15 +157,21 @@ watch(transition, (value) => {
     }
 }
 .containerTitle {
+    position: relative;
     display: flex;
-    align-items: center;
     flex-direction: column;
+    height: 350px;
     width: 85%;
     max-width: 310px;
     color: white;
     font-size: 1.1rem;
+    & p {
+        position: absolute;
+        bottom: 0;
+    }
     & a {
         color: rgb(245, 86, 226);
+        font-weight: bold;
     }
     &Mask {
         display: flex;
@@ -199,6 +205,11 @@ watch(transition, (value) => {
             height: 100%;
             min-width: 310px;
         }
+    }
+}
+@media all and (max-width: 650px) {
+    .frontBox {
+        flex-direction: column;
     }
 }
 </style>
