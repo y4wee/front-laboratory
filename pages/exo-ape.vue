@@ -44,11 +44,9 @@ const yStart = ref(0);
 const yEnd = ref(0);
 const ratio = ref(0);
 const touchStart = (e) => {
-    e.preventDefault();
     yStart.value = e.touches[0].clientY;
 };
 const touchEnd = (e) => {
-    e.preventDefault();
     yEnd.value = e.changedTouches[0].clientY;
     ratio.value = yStart.value - yEnd.value;
     if (ratio.value > 40 || ratio.value < -40) {
@@ -56,7 +54,6 @@ const touchEnd = (e) => {
     }
 };
 const wheel = (e) => {
-    e.preventDefault();
     yDelta.value = e.deltaY;
     transitionStart();
 };
