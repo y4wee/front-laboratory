@@ -41,14 +41,12 @@ const transition = ref({
 
 const yDelta = ref(0);
 const yStart = ref(0);
-const yEnd = ref(0);
 const ratio = ref(0);
 const touchStart = (e) => {
     yStart.value = e.touches[0].clientY;
 };
 const touchEnd = (e) => {
-    yEnd.value = e.changedTouches[0].clientY;
-    ratio.value = yStart.value - yEnd.value;
+    ratio.value = yStart.value - e.changedTouches[0].clientY;
     if (ratio.value > 40 || ratio.value < -40) {
         transitionStart();
     }
@@ -91,7 +89,7 @@ const transitionAfter = () => {
 
 <template>
     <div
-        class="exoape"
+        class="slider"
         @wheel="wheel"
         @touchstart="touchStart"
         @touchend="touchEnd"
@@ -111,8 +109,7 @@ const transitionAfter = () => {
 </template>
 
 <style lang="scss">
-@import url("https://fonts.googleapis.com/css2?family=Anton&family=Montserrat&display=swap");
-.exoape {
+.slider {
     position: relative;
     display: flex;
     justify-content: center;

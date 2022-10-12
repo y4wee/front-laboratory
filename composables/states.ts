@@ -1,0 +1,1 @@
+export const useHash = () => useState<string>('hash', () => 'home')
