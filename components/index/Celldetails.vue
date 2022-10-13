@@ -65,7 +65,7 @@ watch(index, (value) => {
         <div class="detailsContainer">
             <div class="detailsVideo">
                 <video
-                    v-if="active"
+                    v-show="active"
                     :src="index != null ? cells[index].video : '#'"
                     playsInline
                     autoPlay
