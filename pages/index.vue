@@ -112,6 +112,7 @@ $orangeColor: rgb(242, 116, 5); // f27405
     }
     &Logo {
         z-index: 10;
+        pointer-events: none;
         position: fixed;
         top: 0;
         left: 10px;
