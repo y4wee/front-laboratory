@@ -30,8 +30,8 @@ import GithubCat from "~/assets/lotties/github.json";
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 70px;
-    width: 70px;
+    height: 60px;
+    width: 60px;
     border-radius: 50%;
 }
 </style>

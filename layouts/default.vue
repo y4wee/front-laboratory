@@ -2,9 +2,10 @@
 
 <template>
     <main>
+        <Loader />
+        <ButtonBack />
         <slot />
         <Footer />
-        <Loader />
     </main>
 </template>
 

@@ -6,8 +6,11 @@ const cells = ref([
     {
         index: 0,
         title: "slider",
-        image: "/img/img-1.jpg",
+        details: "Slider inspired by ExoApe, blablabla",
+        image: "/img/carousel/slider_exoape.jpg",
+        video: "/video/slider_exoape.mp4",
         link: "/slider",
+        github: "",
     },
     {
         index: 1,
@@ -74,6 +77,7 @@ const cells = ref([
                 <Vue3Lottie :animationData="BackgroundIndex" autoPlay loop />
             </client-only>
         </div>
+        <IndexCelldetails :cells="cells" />
     </div>
 </template>
 
@@ -113,13 +117,13 @@ $orangeColor: rgb(242, 116, 5); // f27405
         left: 10px;
     }
     &Scroll {
-        z-index: 10;
+        z-index: 3;
         position: fixed;
         right: 16px;
         display: flex;
         flex-direction: column;
         font-family: "Anton", sans-serif;
-        font-size: 2rem;
+        font-size: 1.5rem;
         color: #f27405;
     }
     &Carousel {
@@ -146,16 +150,12 @@ $orangeColor: rgb(242, 116, 5); // f27405
         }
         &Logo {
             left: calc(50% - 207px);
-            top: 10vh;
+            top: 50px;
         }
         &Scroll {
             right: calc(50% - 73px);
             bottom: 16px;
-            display: flex;
             flex-direction: row;
-            font-family: "Anton", sans-serif;
-            font-size: 2rem;
-            color: #f27405;
             & div {
                 margin: 0 5px;
             }

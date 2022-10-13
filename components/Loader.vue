@@ -46,13 +46,13 @@ const animationTransition = () => {
         scaleX: 1,
         duration: 0.4,
         ease: "sine.out",
+        onComplete: router.push,
+        onCompleteParams: [{ path: hash.value }],
     });
     tl.to(".containerLoader", {
         opacity: 1,
         duration: 0.3,
         ease: "sine.out",
-        onComplete: router.push,
-        onCompleteParams: [{ path: "/" + hash.value }],
     });
     tl.to(
         ".containerLoader",
