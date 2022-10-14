@@ -77,7 +77,12 @@ watch(index, (value) => {
 <template>
     <div class="details">
         <div class="detailsClose" @click="closeDetails">
-            <img src="~/assets/svg/cross.svg" alt="cross to close" height="35" width="35"/>
+            <img
+                src="~/assets/svg/cross.svg"
+                alt="cross to close"
+                height="35"
+                width="35"
+            />
         </div>
         <div class="detailsMain">
             <div class="detailsVideo">
@@ -128,13 +133,20 @@ watch(index, (value) => {
     justify-content: center;
     width: 100vw;
     height: 100vh;
-    background-color: #1c2020;
     font-family: "Anton", sans-serif;
     transform: translateY(100%);
+    &::before {
+        content: "";
+        position: absolute;
+        align-self: center;
+        width: calc(100vw - 20px);
+        height: calc(100vh - 20px);
+        background-color: #1c2020;
+    }
     &Close {
         position: absolute;
         top: 20px;
-        right: 10px;
+        right: 20px;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -147,16 +159,16 @@ watch(index, (value) => {
         cursor: pointer;
     }
     &Main {
+        z-index: 6;
         display: flex;
         flex-direction: column;
         align-items: center;
-        width: 95vw;
-        height: 80vh;
+        width: calc(95% - 20px);
+        height: calc(80% - 20px);
         max-width: 350px;
         margin-top: 192px;
     }
     &Video {
-        z-index: 6;
         display: flex;
         justify-content: center;
         align-items: center;
