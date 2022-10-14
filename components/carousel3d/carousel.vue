@@ -138,6 +138,9 @@ const changeCell = (way) => {
 };
 // scroll event
 const wheel = (e) => {
+    console.log("ok");
+    e.preventDefault();
+
     if (e.deltaY > 0) {
         selectedIndex.value++;
         if (selectedIndex.value !== previousIndex.value) {
@@ -186,18 +189,22 @@ onMounted(() => {
         carouselInit();
     }, 100);
 });
+const test = () => {
+    console.log("ok");
+};
 </script>
 
 <template>
-    <div class="carouselContainer">
+    <div
+        class="carouselContainer"
+        @click="test"
+        @wheel="wheel"
+        @touchstart="touchStart"
+        @touchend="touchEnd"
+        @touchmove="touchMove"
+    >
         <div class="carouselPerspective">
-            <div
-                class="carousel"
-                @wheel="wheel"
-                @touchstart="touchStart"
-                @touchend="touchEnd"
-                @touchmove="touchMove"
-            >
+            <div class="carousel">
                 <Carousel3dCell
                     :class="'carouselCell carouselCell' + cell.index"
                     v-for="cell in cells"
@@ -230,6 +237,7 @@ onMounted(() => {
         width: 100%;
         height: 100%;
         transform-style: preserve-3d;
+        pointer-events: none;
     }
     position: relative;
     display: flex;

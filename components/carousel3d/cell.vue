@@ -27,6 +27,7 @@ const index = useIndex();
     display: flex;
     width: 95%;
     height: 95%;
+    pointer-events: all;
     cursor: pointer;
     &Container {
         position: relative;
@@ -36,7 +37,7 @@ const index = useIndex();
         height: 100%;
     }
     &Title {
-        z-index: 4;
+        z-index: 10;
         display: flex;
         justify-content: center;
         align-items: center;

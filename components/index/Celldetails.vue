@@ -69,14 +69,16 @@ watch(index, (value) => {
         <div class="detailsClose" @click="closeDetails">X</div>
         <div class="detailsContainer">
             <div class="detailsVideo">
-                <video
-                    v-if="active"
-                    :src="index != null ? cells[index].video : '#'"
-                    :poster="index != null ? cells[index].poster : '#'"
-                    playsInline
-                    muted
-                    loop
-                ></video>
+                <client-only>
+                    <video
+                        v-if="active"
+                        :src="index != null ? cells[index].video : '#'"
+                        preload="metadata"
+                        playsInline
+                        muted
+                        loop
+                    ></video>
+                </client-only>
             </div>
             <div class="detailsText"></div>
             <div
