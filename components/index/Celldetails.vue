@@ -32,7 +32,7 @@ const openDetails = () => {
         "+=0.25"
     );
     tl.from(
-        ".detailsDemo",
+        ".detailsContainer",
         {
             opacity: 0,
             xPercent: 30,
@@ -40,6 +40,16 @@ const openDetails = () => {
             ease: "circle.out",
         },
         "-=0.3"
+    );
+    tl.from(
+        ".detailsDemo",
+        {
+            opacity: 0,
+            xPercent: -20,
+            duration: 0.3,
+            ease: "circle.out",
+        },
+        "-=0.1"
     );
 };
 const closeDetails = () => {
@@ -67,7 +77,7 @@ watch(index, (value) => {
 <template>
     <div class="details">
         <div class="detailsClose" @click="closeDetails">X</div>
-        <div class="detailsContainer">
+        <div class="detailsMain">
             <div class="detailsVideo">
                 <client-only>
                     <video
@@ -79,17 +89,29 @@ watch(index, (value) => {
                     ></video>
                 </client-only>
             </div>
-            <div class="detailsText"></div>
-            <div
-                class="detailsDemo"
-                @click="
-                    () => {
-                        hash = cells[index].link;
-                        index = null;
-                    }
-                "
-            >
-                Démo
+            <div class="detailsContainer">
+                <div class="detailsText">
+                    <span>lorem</span>
+                </div>
+                <div class="detailsText">
+                    <span>lorem</span>
+                </div>
+                <div class="detailsText">
+                    <span>lorem</span>
+                </div>
+                <div class="detailsDemo">
+                    <span
+                        class="detailsDemoText"
+                        @click="
+                            () => {
+                                hash = cells[index].link;
+                                index = null;
+                            }
+                        "
+                        >Démo</span
+                    >
+                    <div class="detailsDemoArrow"></div>
+                </div>
             </div>
         </div>
     </div>
@@ -100,7 +122,7 @@ watch(index, (value) => {
     z-index: 5;
     position: fixed;
     display: flex;
-    align-items: flex-end;
+    justify-content: center;
     width: 100vw;
     height: 100vh;
     background-color: #1c2020;
@@ -121,48 +143,88 @@ watch(index, (value) => {
         color: #e3dfdf;
         cursor: pointer;
     }
-    &Container {
+    &Main {
         display: flex;
         flex-direction: column;
         align-items: center;
-        width: 100%;
-        height: calc(100% - 192px);
-        // background-color: white;
+        width: 95vw;
+        height: 80vh;
+        max-width: 350px;
+        margin-top: 192px;
     }
     &Video {
+        z-index: 6;
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 95%;
-        height: 50%;
-        max-width: 350px;
+        width: 100%;
+        height: 100%;
         max-height: 250px;
-        margin: 20px 0;
         overflow: hidden;
-        // border: 1px solid #e3dfdf;
         & video {
+            object-fit: cover;
+            object-position: center;
             width: 100%;
+            height: 100%;
+        }
+    }
+    &Container {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
+        color: #1c2020;
+        margin-top: 5px;
+    }
+    &Text {
+        margin: 5px 0;
+        & span {
+            padding: 0 10px;
+            font-size: 1.5rem;
+            background-color: #e3dfdf;
         }
     }
     &Demo {
-        padding: 0 5px;
-        font-size: 2rem;
-        background-color: #e3dfdf;
-        cursor: pointer;
+        display: flex;
+        align-items: center;
+        margin-top: 20px;
+        align-self: flex-end;
+        &Text {
+            padding: 0 40px;
+            background-color: #f27405;
+            font-size: 2rem;
+            cursor: pointer;
+        }
+        &Arrow {
+            display: inline-block;
+            height: 0;
+            width: 0;
+            border-top: 45px solid transparent;
+            border-bottom: 45px solid transparent;
+            border-left: 45px solid #f27405;
+        }
     }
 }
 @media all and (min-width: 600px) {
     .details {
-        &Container {
-            height: calc(100% - 340px);
+        &Main {
+            flex-direction: row;
+            align-items: flex-start;
+            justify-content: center;
+            max-width: 1000px;
+            max-height: 400px;
+            margin-top: 340px;
         }
         &Video {
-            max-width: 500px;
-            max-height: 400px;
-            // border: 1px solid #e3dfdf;
-            & video {
-                width: 100%;
-            }
+            max-height: 100%;
+            margin-right: 50px;
+        }
+        &Container {
+            justify-content: center;
+            margin-top: 0px;
+        }
+        &Demo {
+            align-self: auto;
         }
     }
 }
