@@ -7,6 +7,10 @@ const hash = useHash();
 const index = useIndex();
 const active = ref(true);
 
+const playVideo = () => {
+    let video = document.querySelector("video");
+    video.play();
+};
 const openDetails = () => {
     active.value = true;
     let tl = gsap.timeline();
@@ -23,6 +27,7 @@ const openDetails = () => {
             xPercent: -30,
             duration: 0.3,
             ease: "circle.out",
+            onComplete: playVideo,
         },
         "+=0.25"
     );
@@ -68,7 +73,6 @@ watch(index, (value) => {
                     v-if="active"
                     :src="index != null ? cells[index].video : '#'"
                     playsInline
-                    autoPlay
                     muted
                     loop
                 ></video>
