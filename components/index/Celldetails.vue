@@ -72,6 +72,7 @@ watch(index, (value) => {
                 <video
                     v-if="active"
                     :src="index != null ? cells[index].video : '#'"
+                    :poster="index != null ? cells[index].poster : '#'"
                     playsInline
                     muted
                     loop

@@ -9,6 +9,7 @@ const cells = ref([
         details: "Slider inspired by ExoApe, blablabla",
         image: "/img/carousel/slider_exoape.jpg",
         video: "/video/slider_exoape.mp4",
+        poster: "/poster/slider_exoape_poster.jpg",
         link: "/slider",
         github: "",
     },
