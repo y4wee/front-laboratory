@@ -4,18 +4,18 @@ const cells = ref([
     {
         index: 0,
         title: ["Double", "Slider", "Gsap"],
-        details: "Slider inspired by ExoApe, blablabla",
         image: "/img/carousel/slider_exoape.jpg",
         video: "/video/slider_exoape.mp4",
-        poster: "/poster/slider_exoape_poster.jpg",
         link: "/slider",
         github: "",
     },
     {
         index: 1,
         title: ["carousel", "Perspective 3D", "Scroll"],
-        image: "/img/img-2.jpg",
+        image: "/img/carousel/carousel_3d.jpg",
+        video: "/video/carousel_3d.mp4",
         link: "/carousel3d",
+        github: "",
     },
     {
         index: 2,
