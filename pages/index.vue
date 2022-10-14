@@ -1,11 +1,9 @@
 <script setup>
-import BackgroundIndex from "~/assets/lotties/home_background.json";
-
 const hash = useHash();
 const cells = ref([
     {
         index: 0,
-        title: "slider",
+        title: ["Double", "Slider", "Gsap"],
         details: "Slider inspired by ExoApe, blablabla",
         image: "/img/carousel/slider_exoape.jpg",
         video: "/video/slider_exoape.mp4",
@@ -15,37 +13,37 @@ const cells = ref([
     },
     {
         index: 1,
-        title: "carousel3D",
+        title: ["carousel", "Perspective 3D", "Scroll"],
         image: "/img/img-2.jpg",
         link: "/carousel3d",
     },
     {
         index: 2,
-        title: "",
+        title: [""],
         image: "/img/img-3.jpg",
         link: "",
     },
     {
         index: 3,
-        title: "",
+        title: [""],
         image: "/img/img-4.jpg",
         link: "",
     },
     {
         index: 4,
-        title: "",
+        title: [""],
         image: "/img/img-5.jpg",
         link: "",
     },
     {
         index: 5,
-        title: "",
+        title: [""],
         image: "/img/img-6.jpg",
         link: "",
     },
     {
         index: 6,
-        title: "",
+        title: [""],
         image: "/img/img-4.jpg",
         link: "",
     },
@@ -74,9 +72,6 @@ const cells = ref([
             />
         </div>
         <div class="homeBackground">
-            <!-- <client-only>
-                <Vue3Lottie :animationData="BackgroundIndex" autoPlay loop />
-            </client-only> -->
             <img
                 class="homeBackgroundGear homeBackgroundTop"
                 src="~/assets/svg/gear.svg"
@@ -111,7 +106,6 @@ $orangeColor: rgb(242, 116, 5); // f27405
     &Background {
         position: fixed;
         display: flex;
-        // align-items: flex-end;
         justify-content: center;
         overflow: hidden;
         width: 100%;
@@ -131,9 +125,6 @@ $orangeColor: rgb(242, 116, 5); // f27405
             transform: rotateZ(13deg);
             animation: gearBottom 30s infinite linear;
         }
-        // & svg {
-        //     width: 250% !important;
-        // }
     }
     &Logo {
         z-index: 10;

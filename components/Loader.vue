@@ -5,6 +5,7 @@ import Loader from "~/assets/lotties/loader.json";
 const router = useRouter();
 const hash = useHash();
 const loading = ref(true);
+
 const animationInit = () => {
     let tl = gsap.timeline();
 
@@ -69,16 +70,25 @@ const animationTransition = () => {
             scaleX: 0,
             duration: 0.4,
             ease: "sine.out",
-            onComplete: () => (loading.value = false),
+            onComplete: () => {
+                loading.value = false;
+                hash.value = "";
+            },
         },
         "+=0.2"
     );
 };
+
+onBeforeMount(() => {
+    hash.value = router.currentRoute.value.path;
+});
 onMounted(() => {
     animationInit();
 });
 watch(hash, (value) => {
-    animationTransition();
+    if (value != "") {
+        animationTransition();
+    }
 });
 </script>
 

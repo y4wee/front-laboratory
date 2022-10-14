@@ -76,7 +76,9 @@ watch(index, (value) => {
 
 <template>
     <div class="details">
-        <div class="detailsClose" @click="closeDetails">X</div>
+        <div class="detailsClose" @click="closeDetails">
+            <img src="~/assets/svg/cross.svg" alt="cross to close" height="35" width="35"/>
+        </div>
         <div class="detailsMain">
             <div class="detailsVideo">
                 <client-only>
@@ -100,7 +102,7 @@ watch(index, (value) => {
                     <span>lorem</span>
                 </div>
                 <div class="detailsDemo">
-                    <span
+                    <div
                         class="detailsDemoText"
                         @click="
                             () => {
@@ -108,8 +110,9 @@ watch(index, (value) => {
                                 index = null;
                             }
                         "
-                        >Démo</span
                     >
+                        Démo
+                    </div>
                     <div class="detailsDemoArrow"></div>
                 </div>
             </div>
@@ -171,6 +174,7 @@ watch(index, (value) => {
     &Container {
         display: flex;
         flex-direction: column;
+        align-items: flex-start;
         width: 100%;
         height: 100%;
         color: #1c2020;
