@@ -110,11 +110,11 @@ $orangeColor: rgb(242, 116, 5); // f27405
         overflow: hidden;
         width: 100%;
         height: 100%;
-        filter: blur(5px);
         &Gear {
             position: absolute;
             height: 106.6vh;
             width: 106.6vh;
+            filter: blur(5px);
         }
         &Top {
             top: -50vh;

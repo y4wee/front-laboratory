@@ -135,6 +135,7 @@ watch(index, (value) => {
     height: 100vh;
     font-family: "Anton", sans-serif;
     transform: translateY(100%);
+    backdrop-filter: blur(5px);
     &::before {
         content: "";
         position: absolute;
