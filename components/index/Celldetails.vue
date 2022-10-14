@@ -27,7 +27,7 @@ const openDetails = () => {
             xPercent: -30,
             duration: 0.3,
             ease: "circle.out",
-            onComplete: playVideo,
+            onStart: playVideo,
         },
         "+=0.25"
     );
@@ -73,7 +73,6 @@ watch(index, (value) => {
                     <video
                         v-if="active"
                         :src="index != null ? cells[index].video : '#'"
-                        preload="metadata"
                         playsInline
                         muted
                         loop

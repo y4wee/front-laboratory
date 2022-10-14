@@ -74,9 +74,19 @@ const cells = ref([
             />
         </div>
         <div class="homeBackground">
-            <client-only>
+            <!-- <client-only>
                 <Vue3Lottie :animationData="BackgroundIndex" autoPlay loop />
-            </client-only>
+            </client-only> -->
+            <img
+                class="homeBackgroundGear homeBackgroundTop"
+                src="~/assets/svg/gear.svg"
+                alt="gear top"
+            />
+            <img
+                class="homeBackgroundGear homeBackgroundBottom"
+                src="~/assets/svg/gear.svg"
+                alt="gear bottom"
+            />
         </div>
         <IndexCelldetails :cells="cells" />
     </div>
@@ -99,17 +109,31 @@ $orangeColor: rgb(242, 116, 5); // f27405
     overflow: hidden;
     user-select: none;
     &Background {
-        position: absolute;
+        position: fixed;
         display: flex;
-        align-items: flex-end;
+        // align-items: flex-end;
         justify-content: center;
         overflow: hidden;
-        width: 105%;
-        height: 105%;
+        width: 100%;
+        height: 100%;
         filter: blur(5px);
-        & svg {
-            width: 250% !important;
+        &Gear {
+            position: absolute;
+            height: 106.6vh;
+            width: 106.6vh;
         }
+        &Top {
+            top: -50vh;
+            animation: gearTop 30s infinite linear;
+        }
+        &Bottom {
+            top: 50vh;
+            transform: rotateZ(13deg);
+            animation: gearBottom 30s infinite linear;
+        }
+        // & svg {
+        //     width: 250% !important;
+        // }
     }
     &Logo {
         z-index: 10;
@@ -144,12 +168,12 @@ $orangeColor: rgb(242, 116, 5); // f27405
             align-items: flex-end;
             margin-bottom: 50px;
         }
-        &Background {
-            bottom: -15%;
-            & svg {
-                width: 100% !important;
-            }
-        }
+        // &Background {
+        //     bottom: -15%;
+        //     & svg {
+        //         width: 100% !important;
+        //     }
+        // }
         &Logo {
             left: calc(50% - 207px);
             top: 50px;
@@ -162,6 +186,16 @@ $orangeColor: rgb(242, 116, 5); // f27405
                 margin: 0 5px;
             }
         }
+    }
+}
+@keyframes gearTop {
+    to {
+        transform: rotateZ(-360deg);
+    }
+}
+@keyframes gearBottom {
+    to {
+        transform: rotateZ(373deg);
     }
 }
 </style>
