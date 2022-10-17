@@ -3,6 +3,7 @@ import { gsap } from "gsap";
 import Loader from "~/assets/lotties/loader.json";
 
 const router = useRouter();
+const index = useIndex();
 const hash = useHash();
 const loading = ref(true);
 
@@ -73,6 +74,7 @@ const animationTransition = () => {
             onComplete: () => {
                 loading.value = false;
                 hash.value = "";
+                index.value = null;
             },
         },
         "+=0.2"

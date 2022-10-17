@@ -108,12 +108,7 @@ watch(index, (value) => {
                 <div class="detailsDemo">
                     <div
                         class="detailsDemoText"
-                        @click="
-                            () => {
-                                hash = cells[index].link;
-                                index = null;
-                            }
-                        "
+                        @click="hash = cells[index].link"
                     >
                         Démo
                     </div>
