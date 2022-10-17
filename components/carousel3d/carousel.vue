@@ -138,7 +138,6 @@ const changeCell = (way) => {
 };
 // scroll event
 const wheel = (e) => {
-    console.log("ok");
     e.preventDefault();
 
     if (e.deltaY > 0) {

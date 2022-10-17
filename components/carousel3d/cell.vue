@@ -6,14 +6,13 @@ const hash = useHash();
 </script>
 
 <template>
-    <div class="cell" @click="index = cell.index">
+    <div class="cell" @click="cell.category ? (index = cell.index) : false">
         <div class="cellContainer">
-            <div class="cellTitle" v-for="title in cell.title">
-                {{ title ? title : "Empty" }}
-            </div>
             <div class="cellBack">
                 <img :src="cell.image" :alt="cell.title" loading="lazy" />
-                <div class="cellBackOverlay"></div>
+            </div>
+            <div class="cellCategory">
+                {{ cell.category ? cell.category : "..." }}
             </div>
         </div>
     </div>
@@ -31,23 +30,27 @@ const hash = useHash();
     &Container {
         position: relative;
         display: flex;
-        align-items: flex-start;
         flex-direction: column;
         justify-content: center;
         width: 100%;
         height: 100%;
+        overflow: hidden;
     }
-    &Title {
-        z-index: 10;
+    &Category {
+        z-index: 3;
+        position: absolute;
+        top: 15%;
+        right: -30%;
         display: flex;
         justify-content: center;
         align-items: center;
-        margin: 5px 10px;
-        padding: 0 5px;
-        font-family: "Anton", sans-serif;
-        font-size: 1.5rem;
-        background-color: #1c2020;
-        color: white;
+        height: 40px;
+        width: 100%;
+        font-family: "Satisfy", cursive;
+        font-size: 1.4rem;
+        background-color: rgba($color: black, $alpha: 0.8);
+        color: #e3dfdf;
+        transform: rotateZ(45deg);
     }
     &Back {
         display: flex;
@@ -58,14 +61,7 @@ const hash = useHash();
         & img {
             object-fit: cover;
             width: 100%;
-        }
-        &Overlay {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            transform-origin: left;
-            backdrop-filter: grayscale(100%);
-            -webkit-backdrop-filter: grayscale(100%);
+            filter: grayscale(100%);
         }
     }
 }

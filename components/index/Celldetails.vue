@@ -97,14 +97,13 @@ watch(index, (value) => {
                 </client-only>
             </div>
             <div class="detailsContainer">
-                <div class="detailsText">
-                    <span>lorem</span>
-                </div>
-                <div class="detailsText">
-                    <span>lorem</span>
-                </div>
-                <div class="detailsText">
-                    <span>lorem</span>
+                <div
+                    v-if="index != null"
+                    class="detailsText"
+                    v-for="detail in cells[index].details"
+                    :key="detail"
+                >
+                    {{ detail }}
                 </div>
                 <div class="detailsDemo">
                     <div
@@ -194,12 +193,10 @@ watch(index, (value) => {
         margin-top: 5px;
     }
     &Text {
+        padding: 0 10px;
         margin: 5px 0;
-        & span {
-            padding: 0 10px;
-            font-size: 1.5rem;
-            background-color: #e3dfdf;
-        }
+        font-size: 1.4rem;
+        background-color: #e3dfdf;
     }
     &Demo {
         display: flex;

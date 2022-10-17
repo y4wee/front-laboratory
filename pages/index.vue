@@ -3,7 +3,8 @@ const hash = useHash();
 const cells = ref([
     {
         index: 0,
-        title: ["Double", "Slider", "Gsap"],
+        category: "Slider",
+        details: ["Gsap", "Scroll / Touch", "Double Transition"],
         image: "/img/carousel/slider_exoape.jpg",
         video: "/video/slider_exoape.mp4",
         link: "/slider",
@@ -11,7 +12,8 @@ const cells = ref([
     },
     {
         index: 1,
-        title: ["carousel", "Perspective 3D", "Scroll"],
+        category: "Carousel",
+        details: ["Perspective3D", "Scroll / Touch", "Transition"],
         image: "/img/carousel/carousel_3d.jpg",
         video: "/video/carousel_3d.mp4",
         link: "/carousel3d",
@@ -19,31 +21,31 @@ const cells = ref([
     },
     {
         index: 2,
-        title: [""],
+        category: "",
         image: "/img/img-3.jpg",
         link: "",
     },
     {
         index: 3,
-        title: [""],
+        category: "",
         image: "/img/img-4.jpg",
         link: "",
     },
     {
         index: 4,
-        title: [""],
+        category: "",
         image: "/img/img-5.jpg",
         link: "",
     },
     {
         index: 5,
-        title: [""],
+        category: "",
         image: "/img/img-6.jpg",
         link: "",
     },
     {
         index: 6,
-        title: [""],
+        category: "",
         image: "/img/img-4.jpg",
         link: "",
     },
@@ -52,6 +54,7 @@ const cells = ref([
 
 <template>
     <div class="home">
+        <div class="homeLogoBack"></div>
         <div class="homeLogo">
             <IndexLogo />
         </div>
@@ -103,6 +106,7 @@ $orangeColor: rgb(242, 116, 5); // f27405
     height: 100vh;
     overflow: hidden;
     user-select: none;
+    font-family: "Montserrat", sans-serif;
     &Background {
         position: fixed;
         display: flex;
@@ -128,10 +132,21 @@ $orangeColor: rgb(242, 116, 5); // f27405
     }
     &Logo {
         z-index: 10;
-        pointer-events: none;
         position: fixed;
         top: 0;
-        left: 10px;
+        display: flex;
+        width: 100vw;
+        height: 16vh;
+        pointer-events: none;
+        &Back {
+            z-index: 4;
+            position: fixed;
+            top: 0;
+            background: white;
+            width: 100%;
+            height: 16vh;
+            pointer-events: none;
+        }
     }
     &Scroll {
         z-index: 3;
@@ -140,7 +155,7 @@ $orangeColor: rgb(242, 116, 5); // f27405
         display: flex;
         flex-direction: column;
         font-family: "Anton", sans-serif;
-        font-size: 1.5rem;
+        font-size: 1.4rem;
         color: #f27405;
     }
     &Carousel {
@@ -159,15 +174,12 @@ $orangeColor: rgb(242, 116, 5); // f27405
             align-items: flex-end;
             margin-bottom: 50px;
         }
-        // &Background {
-        //     bottom: -15%;
-        //     & svg {
-        //         width: 100% !important;
-        //     }
-        // }
         &Logo {
-            left: calc(50% - 207px);
-            top: 50px;
+            justify-content: center;
+            top: 10vh;
+            &Back {
+                display: none;
+            }
         }
         &Scroll {
             right: calc(50% - 73px);
