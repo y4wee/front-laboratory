@@ -53,7 +53,6 @@ const openDetails = () => {
     );
 };
 const closeDetails = () => {
-    console.log("ok");
     let tl = gsap.timeline();
 
     tl.to(".details", {

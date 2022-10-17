@@ -188,9 +188,6 @@ onMounted(() => {
         carouselInit();
     }, 100);
 });
-const test = () => {
-    console.log("ok");
-};
 </script>
 
 <template>
