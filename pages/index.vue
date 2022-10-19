@@ -22,31 +22,31 @@ const cells = ref([
     {
         index: 2,
         category: "",
-        image: "/img/img-3.jpg",
+        image: "",
         link: "",
     },
     {
         index: 3,
         category: "",
-        image: "/img/img-4.jpg",
+        image: "",
         link: "",
     },
     {
         index: 4,
         category: "",
-        image: "/img/img-5.jpg",
+        image: "",
         link: "",
     },
     {
         index: 5,
         category: "",
-        image: "/img/img-6.jpg",
+        image: "",
         link: "",
     },
     {
         index: 6,
         category: "",
-        image: "/img/img-4.jpg",
+        image: "",
         link: "",
     },
 ]);
@@ -106,6 +106,7 @@ $orangeColor: rgb(242, 116, 5); // f27405
     height: 100vh;
     overflow: hidden;
     user-select: none;
+    background-color: #e3dfdf;
     font-family: "Montserrat", sans-serif;
     &Background {
         position: fixed;
@@ -142,10 +143,13 @@ $orangeColor: rgb(242, 116, 5); // f27405
             z-index: 4;
             position: fixed;
             top: 0;
-            background: white;
+            // background: white;
+            // background-color: #e3dfdf;
+            background-color: rgba($color: black, $alpha: 0.8);
             width: 100%;
             height: 16vh;
             pointer-events: none;
+            border-bottom: solid 2px white;
         }
     }
     &Scroll {

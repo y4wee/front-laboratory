@@ -9,7 +9,20 @@ const hash = useHash();
     <div class="cell" @click="cell.category ? (index = cell.index) : false">
         <div class="cellContainer">
             <div class="cellBack">
-                <img :src="cell.image" :alt="cell.title" loading="lazy" />
+                <img
+                    v-if="cell.image"
+                    class="cellBackImg"
+                    :src="cell.image"
+                    :alt="cell.title"
+                    loading="lazy"
+                />
+                <div v-else class="cellBackSvg">
+                    <img
+                        src="~/assets/svg/work_progress.svg"
+                        alt="work in progress"
+                        loading="lazy"
+                    />
+                </div>
             </div>
             <div class="cellCategory">
                 {{ cell.category ? cell.category : "..." }}
@@ -26,7 +39,6 @@ const hash = useHash();
     height: 95%;
     pointer-events: all;
     cursor: pointer;
-    will-change: transform;
     &Container {
         position: relative;
         display: flex;
@@ -57,11 +69,23 @@ const hash = useHash();
         position: absolute;
         width: 100%;
         height: 100%;
-        overflow: hidden;
         & img {
+            filter: grayscale(100%);
+        }
+        &Img {
             object-fit: cover;
             width: 100%;
-            filter: grayscale(100%);
+        }
+        &Svg {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            background-color: #1c2020;
+            & img {
+                height: 100%;
+            }
         }
     }
 }
