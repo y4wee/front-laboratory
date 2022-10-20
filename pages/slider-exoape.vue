@@ -3,32 +3,32 @@ const images = [
     {
         index: 0,
         name: "coffe work",
-        url: "/img/img-5.jpg",
+        url: "/img/slider/exo-ape/img-5.jpg",
     },
     {
         index: 1,
         name: "work and chill",
-        url: "/img/img-1.jpg",
+        url: "/img/slider/exo-ape/img-1.jpg",
     },
     {
         index: 2,
         name: "sound and keyboard",
-        url: "/img/img-4.jpg",
+        url: "/img/slider/exo-ape/img-4.jpg",
     },
     {
         index: 3,
         name: "developer agile",
-        url: "/img/img-6.jpg",
+        url: "/img/slider/exo-ape/img-6.jpg",
     },
     {
         index: 4,
         name: "bien-être naturel",
-        url: "/img/img-3.jpg",
+        url: "/img/slider/exo-ape/img-3.jpg",
     },
     {
         index: 5,
         name: "passion des banzaï",
-        url: "/img/img-2.jpg",
+        url: "/img/slider/exo-ape/img-2.jpg",
     },
 ];
 const imageShowed = ref([0]);

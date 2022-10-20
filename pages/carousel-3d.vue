@@ -2,38 +2,24 @@
 const cells = ref([
     {
         index: 0,
-        title: ["Title", "Title"],
-        image: "/img/img-1.jpg",
     },
     {
         index: 1,
-        title: ["Title", "Title", "Title"],
-        image: "/img/img-2.jpg",
     },
     {
         index: 2,
-        title: [""],
-        image: "/img/img-3.jpg",
     },
     {
         index: 3,
-        title: ["Title", "Title"],
-        image: "/img/img-4.jpg",
     },
     {
         index: 4,
-        title: ["Title", "Title", "Title"],
-        image: "/img/img-5.jpg",
     },
     {
         index: 5,
-        title: ["Title"],
-        image: "/img/img-6.jpg",
     },
     {
         index: 6,
-        title: [""],
-        image: "/img/img-3.jpg",
     },
 ]);
 </script>
