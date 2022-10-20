@@ -7,7 +7,7 @@ const cells = ref([
         details: ["Gsap", "Scroll / Touch", "Double Transition"],
         image: "/img/carousel/slider_exoape.jpg",
         video: "/video/slider_exoape.mp4",
-        link: "/slider",
+        link: "/slider-exoape",
         github: "",
     },
     {
