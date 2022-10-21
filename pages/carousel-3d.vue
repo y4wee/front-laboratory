@@ -35,7 +35,7 @@ const cells = ref([
     </div>
 </template>
 
-<style lang="scss">
+<style scoped lang="scss">
 .main {
     z-index: 3;
     position: fixed;

@@ -21,9 +21,11 @@ const cells = ref([
     },
     {
         index: 2,
-        category: "",
-        image: "",
-        link: "",
+        category: "Canvas",
+        details: ["Pixels", "Particles", "Physics"],
+        image: "/img/home/canvas_hat.png",
+        video: "/video/canvas_hat.mp4",
+        link: "/canvas-hat",
     },
     {
         index: 3,
@@ -90,7 +92,7 @@ const cells = ref([
     </div>
 </template>
 
-<style lang="scss">
+<style scoped lang="scss">
 $mainColor: rgb(28, 32, 32); // 1c2020
 $secondColor: rgb(233, 222, 190); // e9debe
 $thirdColor: rgb(227, 223, 223); // e3dfdf

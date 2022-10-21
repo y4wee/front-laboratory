@@ -108,7 +108,7 @@ const transitionAfter = () => {
     </div>
 </template>
 
-<style lang="scss">
+<style scoped lang="scss">
 .slider {
     position: relative;
     display: flex;

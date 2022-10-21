@@ -136,6 +136,7 @@ watch(index, (value) => {
         width: calc(100vw - 20px);
         height: calc(100vh - 20px);
         background-color: #1c2020;
+        background-color: rgba($color: #000000, $alpha: 0.9);
     }
     &Close {
         position: absolute;
