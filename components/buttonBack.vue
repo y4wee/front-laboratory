@@ -25,16 +25,16 @@ const hash = useHash();
         display: inline-block;
         height: 0;
         width: 0;
-        border-top: 33px solid transparent;
-        border-bottom: 33px solid transparent;
-        border-right: 33px solid #f27405;
+        border-top: 30px solid transparent;
+        border-bottom: 30px solid transparent;
+        border-right: 30px solid #f27405;
     }
     &Text {
         padding: 0 20px;
         color: #1c2020;
         background-color: #f27405;
         font-family: "Anton", sans-serif;
-        font-size: 1.5rem;
+        font-size: 1.4rem;
         cursor: pointer;
     }
 }
