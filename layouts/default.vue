@@ -10,7 +10,7 @@
 </template>
 
 <style>
-@import url("https://fonts.googleapis.com/css2?family=Anton&family=Montserrat&family=Satisfy&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Anton&family=Barlow&family=Montserrat&family=Satisfy&display=swap");
 body {
     margin: 0;
     padding: 0;
