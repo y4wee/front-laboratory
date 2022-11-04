@@ -24,17 +24,39 @@ const animationInit = () => {
             duration: 0.3,
             ease: "sine.out",
         },
-        "+=0.3"
+        "+=0.5"
     );
     tl.to(
-        ".containerSide",
+        ".containerSlide",
         {
-            scaleX: 0,
-            duration: 0.4,
-            ease: "sine.out",
-            onComplete: () => (loading.value = false),
+            yPercent: 100,
+            duration: 1.2,
+            ease: "expo.inOut",
         },
-        "+=0.2"
+        "-=0.5"
+    );
+    tl.to(
+        ".containerSlideBack",
+        {
+            scaleY: 1,
+            duration: 0.7,
+            ease: "expo.in",
+        },
+        "-=1.4"
+    );
+    tl.to(
+        ".containerSlideBack",
+        {
+            scaleY: 0,
+            duration: 0.5,
+            ease: "expo.out",
+            onComplete: () => {
+                loading.value = false;
+                hash.value = "";
+                index.value = null;
+            },
+        },
+        "-=0.55"
     );
 };
 
@@ -44,45 +66,38 @@ const animationTransition = () => {
 
     tl.delay(0.1);
 
-    tl.to(".containerSide", {
-        scaleX: 1,
-        duration: 0.4,
-        ease: "sine.out",
+    tl.to(".containerSlide", {
+        yPercent: 0,
+        duration: 1.2,
+        ease: "expo.inOut",
         onComplete: router.push,
         onCompleteParams: [{ path: hash.value }],
     });
-    tl.to(".containerLoader", {
-        opacity: 1,
-        duration: 0.3,
-        ease: "sine.out",
-    });
     tl.to(
-        ".containerLoader",
+        ".containerSlideBack",
         {
-            opacity: 0,
-            duration: 0.3,
-            ease: "sine.out",
+            scaleY: 1,
+            duration: 0.7,
+            ease: "expo.in",
         },
-        "+=0.3"
+        "-=1.4"
     );
     tl.to(
-        ".containerSide",
+        ".containerSlideBack",
         {
-            scaleX: 0,
-            duration: 0.4,
-            ease: "sine.out",
-            onComplete: () => {
-                loading.value = false;
-                hash.value = "";
-                index.value = null;
-            },
+            scaleY: 0,
+            duration: 0.5,
+            ease: "expo.out",
+            onComplete: animationInit,
         },
-        "+=0.2"
+        "-=0.55"
     );
 };
 
 onBeforeMount(() => {
-    hash.value = router.currentRoute.value.path;
+    if (router.currentRoute.value.path != "/") {
+        hash.value = router.currentRoute.value.path;
+    }
 });
 onMounted(() => {
     animationInit();
@@ -96,8 +111,10 @@ watch(hash, (value) => {
 
 <template>
     <div class="container" v-show="loading">
-        <div class="containerSide containerTop"></div>
-        <div class="containerSide containerBottom"></div>
+        <div class="containerSlide">
+            <div class="containerSlideLeft containerSlideBack"></div>
+            <div class="containerSlideRight containerSlideBack"></div>
+        </div>
         <div class="containerLoader">
             <client-only>
                 <Vue3Lottie :animationData="Loader" autoPlay loop />
@@ -119,6 +136,31 @@ watch(hash, (value) => {
     width: 100vw;
     height: 100vh;
     pointer-events: none;
+    &Slide {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        background-color: #1c2020;
+        transform-origin: bottom;
+        &Back {
+            position: absolute;
+            width: 50%;
+            height: 25vh;
+            background-color: #f27405;
+        }
+        &Left {
+            top: -25vh;
+            left: 0;
+            transform-origin: bottom;
+            transform: scaleY(0);
+        }
+        &Right {
+            top: 0;
+            right: 0;
+            transform-origin: top;
+            transform: scaleY(0);
+        }
+    }
     &Side {
         width: 100%;
         height: 50%;
