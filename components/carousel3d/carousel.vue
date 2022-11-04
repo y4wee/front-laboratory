@@ -193,7 +193,6 @@ onMounted(() => {
 <template>
     <div
         class="carouselContainer"
-        @click="test"
         @wheel="wheel"
         @touchstart="touchStart"
         @touchend="touchEnd"

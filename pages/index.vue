@@ -29,15 +29,17 @@ const cells = ref([
     },
     {
         index: 3,
-        category: "test",
-        image: "",
-        link: "/canvas/test",
+        category: "nav",
+        details: ["Gsap", "Slider", "Scroll / Touch"],
+        image: "/img/home/nav_legends.jpg",
+        video: "/video/nav_legends.mp4",
+        link: "/nav/legends",
     },
     {
         index: 4,
-        category: "nav",
+        category: "",
         image: "",
-        link: "/nav/test",
+        link: "",
     },
     {
         index: 5,
@@ -145,8 +147,6 @@ $orangeColor: rgb(242, 116, 5); // f27405
             z-index: 4;
             position: fixed;
             top: 0;
-            // background: white;
-            // background-color: #e3dfdf;
             background-color: rgba($color: black, $alpha: 0.8);
             width: 100%;
             height: 16vh;

@@ -25,7 +25,12 @@ const hash = useHash();
                 </div>
             </div>
             <div class="cellCategory">
-                {{ cell.category ? cell.category : "..." }}
+                {{
+                    cell.category
+                        ? cell.category[0].toUpperCase() +
+                          cell.category.substring(1)
+                        : "..."
+                }}
             </div>
         </div>
     </div>

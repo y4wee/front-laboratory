@@ -180,7 +180,6 @@ watch(transition, (value) => {
             font-family: "Anton", sans-serif;
             font-size: 4rem;
             transform-origin: "top left";
-            will-change: transform;
         }
     }
 }
