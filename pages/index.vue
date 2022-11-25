@@ -58,17 +58,8 @@ const cells = ref([
 
 <template>
     <div class="home">
-        <div class="homeLogoBack"></div>
         <div class="homeLogo">
             <IndexLogo />
-        </div>
-        <div class="homeScroll">
-            <div>S</div>
-            <div>C</div>
-            <div>R</div>
-            <div>O</div>
-            <div>L</div>
-            <div>L</div>
         </div>
         <div class="homeCarousel">
             <Carousel3dCarousel
@@ -78,18 +69,7 @@ const cells = ref([
                 :touchSpeed="150"
             />
         </div>
-        <div class="homeBackground">
-            <img
-                class="homeBackgroundGear homeBackgroundTop"
-                src="~/assets/svg/gear.svg"
-                alt="gear top"
-            />
-            <img
-                class="homeBackgroundGear homeBackgroundBottom"
-                src="~/assets/svg/gear.svg"
-                alt="gear bottom"
-            />
-        </div>
+        <div class="homeContainer"></div>
         <IndexCelldetails :cells="cells" />
     </div>
 </template>
@@ -112,29 +92,6 @@ $orangeColor: rgb(242, 116, 5); // f27405
     user-select: none;
     background-color: #e3dfdf;
     font-family: "Montserrat", sans-serif;
-    &Background {
-        position: fixed;
-        display: flex;
-        justify-content: center;
-        overflow: hidden;
-        width: 100%;
-        height: 100%;
-        &Gear {
-            position: absolute;
-            height: 106.6vh;
-            width: 106.6vh;
-            filter: blur(5px);
-        }
-        &Top {
-            top: -50vh;
-            animation: gearTop 30s infinite linear;
-        }
-        &Bottom {
-            top: 50vh;
-            transform: rotateZ(13deg);
-            animation: gearBottom 30s infinite linear;
-        }
-    }
     &Logo {
         z-index: 10;
         position: fixed;
@@ -143,16 +100,6 @@ $orangeColor: rgb(242, 116, 5); // f27405
         width: 100vw;
         height: 16vh;
         pointer-events: none;
-        &Back {
-            z-index: 4;
-            position: fixed;
-            top: 0;
-            background-color: rgba($color: black, $alpha: 0.8);
-            width: 100%;
-            height: 16vh;
-            pointer-events: none;
-            border-bottom: solid 2px white;
-        }
     }
     &Scroll {
         z-index: 3;
@@ -197,14 +144,5 @@ $orangeColor: rgb(242, 116, 5); // f27405
         }
     }
 }
-@keyframes gearTop {
-    to {
-        transform: rotateZ(-360deg);
-    }
-}
-@keyframes gearBottom {
-    to {
-        transform: rotateZ(373deg);
-    }
-}
+
 </style>

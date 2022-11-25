@@ -6,57 +6,126 @@ const router = useRouter();
 const index = useIndex();
 const hash = useHash();
 const loading = ref(true);
+const started = ref(null);
 
 const animationInit = () => {
     let tl = gsap.timeline();
 
-    tl.delay(0.1);
+    tl.delay(2);
 
-    tl.to(".containerLoader", {
-        opacity: 1,
+    if (started.value && started.value === "true") {
+        tl.to(".loaderWaiting", {
+            opacity: 0,
+            duration: 0.3,
+            ease: "sine.in",
+        });
+        tl.to(".loaderSlideTop", {
+            yPercent: -80,
+            duration: 0.4,
+            ease: "power4.in",
+        });
+        tl.to(
+            ".loaderSlideBottom",
+            {
+                yPercent: 80,
+                duration: 0.4,
+                ease: "power4.in",
+            },
+            "-=0.4"
+        );
+        tl.to(
+            ".loaderSlideGearTop",
+            {
+                yPercent: -40,
+                duration: 0.4,
+                ease: "power4.in",
+            },
+            "-=0.4"
+        );
+        tl.to(
+            ".loaderSlideGearBottom",
+            {
+                yPercent: 40,
+                duration: 0.4,
+                ease: "power4.in",
+            },
+            "-=0.4"
+        );
+    } else {
+        tl.to(".loaderWaiting", {
+            xPercent: 100,
+            duration: 0.3,
+            ease: "sine.in",
+        });
+        tl.to(
+            ".loaderStart",
+            {
+                xPercent: 90,
+                duration: 0.3,
+                ease: "sine.in",
+            },
+            "-=0.3"
+        );
+        tl.to(".loaderStart", {
+            pointerEvents: "all",
+            duration: 0,
+        });
+        tl.to(".loaderWaiting", {
+            opacity: 0,
+            xPercent: 0,
+            duration: 0,
+        });
+    }
+};
+const animationStart = () => {
+    sessionStorage.setItem("started", "true");
+    let tl = gsap.timeline();
+
+    tl.to(".loaderStartOn", {
+        clipPath: "inset(0% 0% 0% 0%)",
         duration: 0.3,
-        ease: "sine.out",
+        ease: "sine.in",
     });
     tl.to(
-        ".containerLoader",
+        ".loaderStart",
         {
             opacity: 0,
             duration: 0.3,
-            ease: "sine.out",
+            ease: "sine.in",
         },
-        "+=0.5"
+        "+=0.1"
+    );
+    tl.to(".loaderSlideTop", {
+        yPercent: -80,
+        duration: 0.4,
+        ease: "power4.in",
+    });
+    tl.to(
+        ".loaderSlideBottom",
+        {
+            yPercent: 80,
+            duration: 0.4,
+            ease: "power4.in",
+        },
+        "-=0.4"
     );
     tl.to(
-        ".containerSlide",
+        ".loaderSlideGearTop",
         {
-            yPercent: 100,
-            duration: 1.2,
-            ease: "expo.inOut",
+            yPercent: -40,
+            duration: 0.4,
+            ease: "power4.in",
         },
-        "-=0.5"
+        "-=0.4"
     );
     tl.to(
-        ".containerSlideBack",
+        ".loaderSlideGearBottom",
         {
-            scaleY: 1,
-            duration: 0.7,
-            ease: "expo.in",
+            yPercent: 40,
+            duration: 0.4,
+            ease: "power4.in",
         },
-        "-=1.4"
-    );
-    tl.to(
-        ".containerSlideBack",
-        {
-            scaleY: 0,
-            duration: 0.5,
-            ease: "expo.out",
-            onComplete: () => {
-                loading.value = false;
-                hash.value = "";
-                index.value = null;
-            },
-        },
-        "-=0.55"
+        "-=0.4"
     );
 };
 
@@ -65,33 +134,6 @@ const animationTransition = () => {
     let tl = gsap.timeline();
 
     tl.delay(0.1);
-
-    tl.to(".containerSlide", {
-        yPercent: 0,
-        duration: 1.2,
-        ease: "expo.inOut",
-        onComplete: router.push,
-        onCompleteParams: [{ path: hash.value }],
-    });
-    tl.to(
-        ".containerSlideBack",
-        {
-            scaleY: 1,
-            duration: 0.7,
-            ease: "expo.in",
-        },
-        "-=1.4"
-    );
-    tl.to(
-        ".containerSlideBack",
-        {
-            scaleY: 0,
-            duration: 0.5,
-            ease: "expo.out",
-            onComplete: animationInit,
-        },
-        "-=0.55"
-    );
 };
 
 onBeforeMount(() => {
@@ -100,6 +142,8 @@ onBeforeMount(() => {
     }
 });
 onMounted(() => {
+    started.value = sessionStorage.getItem("started");
+    console.log(started);
     animationInit();
 });
 watch(hash, (value) => {
@@ -110,74 +154,234 @@ watch(hash, (value) => {
 </script>
 
 <template>
-    <div class="container" v-show="loading">
-        <div class="containerSlide">
-            <div class="containerSlideLeft containerSlideBack"></div>
-            <div class="containerSlideRight containerSlideBack"></div>
+    <div class="loader">
+        <div
+            v-if="started === null"
+            class="loaderStart"
+            @click="animationStart"
+        >
+            <div class="loaderStartButton loaderStartOff">START</div>
+            <div class="loaderStartButton loaderStartOn">START</div>
         </div>
-        <div class="containerLoader">
+
+        <div class="loaderWaiting">
             <client-only>
                 <Vue3Lottie :animationData="Loader" autoPlay loop />
             </client-only>
+        </div>
+
+        <div class="loaderSlide loaderSlideTop">
+            <div class="loaderSlideBack loaderSlideBackTop"></div>
+            <img
+                class="loaderSlideBackTopImg"
+                src="~/assets/svg/gearback.svg"
+                alt="gear back top"
+                width="300px"
+                height="150px"
+            />
+            <div class="loaderSlideBackTopGear">
+                <img
+                    class="gearsRotate"
+                    src="~/assets/svg/gear.svg"
+                    alt="gear bottom"
+                    width="300px"
+                    height="300px"
+                />
+            </div>
+        </div>
+
+        <div class="loaderSlide loaderSlideBottom">
+            <div class="loaderSlideBack loaderSlideBackBottom"></div>
+            <img
+                class="loaderSlideBackBottomImg"
+                src="~/assets/svg/gearback.svg"
+                alt="gear back bottom"
+                width="300px"
+                height="150px"
+            />
+            <div class="loaderSlideBackBottomGear">
+                <img
+                    class="gearsRotate"
+                    src="~/assets/svg/gear.svg"
+                    alt="gear bottom"
+                    width="300px"
+                    height="300px"
+                />
+            </div>
+        </div>
+
+        <div class="loaderSlideGear loaderSlideGearTop">
+            <div class="loaderSlideGearBlend loaderSlideGearTopBlend">
+                <img
+                    class="gearsRotate"
+                    src="~/assets/svg/gear.svg"
+                    alt="gear bottom"
+                    width="300px"
+                    height="300px"
+                />
+            </div>
+        </div>
+
+        <div class="loaderSlideGear loaderSlideGearBottom">
+            <div class="loaderSlideGearBlend loaderSlideGearBottomBlend">
+                <img
+                    class="gearsRotate"
+                    src="~/assets/svg/gear.svg"
+                    alt="gear bottom"
+                    width="300px"
+                    height="300px"
+                />
+            </div>
         </div>
     </div>
 </template>
 
 <style lang="scss">
-.container {
+$mainColor: rgb(28, 32, 32); // 1c2020
+$secondColor: rgb(233, 222, 190); // e9debe
+$thirdColor: rgb(227, 223, 223); // e3dfdf
+$greenColor: rgb(86, 245, 105); // 56f569
+$purpleColor: rgb(245, 86, 226); // f556e2
+$orangeColor: rgb(242, 116, 5); // f27405
+
+.loader {
     z-index: 100;
     position: fixed;
-    top: 0;
-    left: 0;
+    bottom: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
+    font-family: "Anton", sans-serif;
     pointer-events: none;
+
+    &Waiting {
+        position: absolute;
+        width: 230px;
+        height: 230px;
+        background-color: $mainColor;
+    }
+    &Start {
+        position: absolute;
+        width: 230px;
+        height: 230px;
+        transform: translateX(-90%);
+        background-color: $mainColor;
+        &Button {
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 230px;
+            height: 230px;
+            font-size: 2.5rem;
+            cursor: pointer;
+        }
+        &Off {
+            color: $orangeColor;
+        }
+        &On {
+            background-color: $orangeColor;
+            color: $mainColor;
+            clip-path: inset(0% 100% 0% 0%);
+        }
+    }
     &Slide {
         position: relative;
-        width: 100%;
-        height: 100%;
-        background-color: #1c2020;
-        transform-origin: bottom;
-        &Back {
-            position: absolute;
-            width: 50%;
-            height: 25vh;
-            background-color: #f27405;
-        }
-        &Left {
-            top: -25vh;
-            left: 0;
-            transform-origin: bottom;
-            transform: scaleY(0);
-        }
-        &Right {
-            top: 0;
-            right: 0;
-            transform-origin: top;
-            transform: scaleY(0);
-        }
-    }
-    &Side {
+        display: flex;
+        justify-content: center;
         width: 100%;
         height: 50%;
-        background-color: #1c2020;
+        &Back {
+            width: 100%;
+            height: 100%;
+            background-color: $mainColor;
+            &Top {
+                clip-path: polygon(
+                    0 0,
+                    0 calc(100% + 0.5px),
+                    calc(50% - 149.5px) calc(100% + 0.5px),
+                    calc(50% - 149.5px) calc(calc(100% + 0.5px) - 149.5px),
+                    calc(50% + 149.5px) calc(calc(100% + 0.5px) - 149.5px),
+                    calc(50% + 149.5px) calc(100% + 0.5px),
+                    100% calc(100% + 0.5px),
+                    100% 0
+                );
+                &Img {
+                    position: absolute;
+                    bottom: 0;
+                    transform: rotateZ(180deg);
+                }
+                &Gear {
+                    height: 300px;
+                    width: 300px;
+                    position: absolute;
+                    bottom: -150px;
+                    clip-path: inset(0 0 calc(50% - 0.5px) 0);
+                }
+            }
+            &Bottom {
+                clip-path: polygon(
+                    0 0,
+                    calc(50% - 149.5px) 0,
+                    calc(50% - 149.5px) 149.5px,
+                    calc(50% + 149.5px) 149.5px,
+                    calc(50% + 149.5px) 0,
+                    100% 0,
+                    100% 100%,
+                    0 100%
+                );
+                &Img {
+                    position: absolute;
+                    top: 0;
+                }
+                &Gear {
+                    height: 300px;
+                    width: 300px;
+                    position: absolute;
+                    top: -150px;
+                    clip-path: inset(calc(50% - 0.5px) 0 0 0);
+                }
+            }
+        }
+        &Gear {
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            mix-blend-mode: screen;
+            & img {
+                width: 300px;
+                height: 300px;
+            }
+            &Blend {
+                position: absolute;
+                width: 300px;
+                height: 300px;
+            }
+            &Top {
+                &Blend {
+                    clip-path: inset(50% 0 0 0);
+                }
+            }
+            &Bottom {
+                &Blend {
+                    clip-path: inset(0 0 50% 0);
+                }
+            }
+        }
     }
-    &Top {
-        transform-origin: right;
-    }
-    &Bottom {
-        transform-origin: left;
-    }
-    &Loader {
-        position: absolute;
-        display: flex;
-        width: 50%;
-        max-width: 300px;
-        opacity: 0;
+}
+.gearsRotate {
+    animation: gearRotate 30s infinite linear;
+}
+@keyframes gearRotate {
+    to {
+        transform: rotateZ(360deg);
     }
 }
 </style>
