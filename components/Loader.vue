@@ -8,50 +8,58 @@ const hash = useHash();
 const loading = ref(true);
 const started = ref(null);
 
-const animationInit = () => {
+const animationSlide = () => {
     let tl = gsap.timeline();
 
-    tl.delay(2);
+    tl.to(".loaderSlideTop", {
+        yPercent: hash.value === "/" ? -80 : -100,
+        duration: 0.4,
+        ease: "power4.in",
+    });
+    tl.to(
+        ".loaderSlideBottom",
+        {
+            yPercent: hash.value === "/" ? 80 : 100,
+            duration: 0.4,
+            ease: "power4.in",
+        },
+        "-=0.4"
+    );
+    tl.to(
+        ".loaderSlideGearTop",
+        {
+            yPercent: hash.value === "/" ? -40 : -50,
+            duration: 0.4,
+            ease: "power4.in",
+        },
+        "-=0.4"
+    );
+    tl.to(
+        ".loaderSlideGearBottom",
+        {
+            yPercent: hash.value === "/" ? 40 : 50,
+            duration: 0.4,
+            ease: "power4.in",
+        },
+        "-=0.4"
+    );
+};
 
+const animationInit = () => {
+    let tl = gsap.timeline();
+    //verifie si started
     if (started.value && started.value === "true") {
+        tl.delay(1);
+
         tl.to(".loaderWaiting", {
             opacity: 0,
             duration: 0.3,
             ease: "sine.in",
+            onComplete: animationSlide,
         });
-        tl.to(".loaderSlideTop", {
-            yPercent: -80,
-            duration: 0.4,
-            ease: "power4.in",
-        });
-        tl.to(
-            ".loaderSlideBottom",
-            {
-                yPercent: 80,
-                duration: 0.4,
-                ease: "power4.in",
-            },
-            "-=0.4"
-        );
-        tl.to(
-            ".loaderSlideGearTop",
-            {
-                yPercent: -40,
-                duration: 0.4,
-                ease: "power4.in",
-            },
-            "-=0.4"
-        );
-        tl.to(
-            ".loaderSlideGearBottom",
-            {
-                yPercent: 40,
-                duration: 0.4,
-                ease: "power4.in",
-            },
-            "-=0.4"
-        );
     } else {
+        tl.delay(2);
+
         tl.to(".loaderWaiting", {
             xPercent: 100,
             duration: 0.3,
@@ -92,40 +100,9 @@ const animationStart = () => {
             opacity: 0,
             duration: 0.3,
             ease: "sine.in",
+            onComplete: animationSlide,
         },
         "+=0.1"
-    );
-    tl.to(".loaderSlideTop", {
-        yPercent: -80,
-        duration: 0.4,
-        ease: "power4.in",
-    });
-    tl.to(
-        ".loaderSlideBottom",
-        {
-            yPercent: 80,
-            duration: 0.4,
-            ease: "power4.in",
-        },
-        "-=0.4"
-    );
-    tl.to(
-        ".loaderSlideGearTop",
-        {
-            yPercent: -40,
-            duration: 0.4,
-            ease: "power4.in",
-        },
-        "-=0.4"
-    );
-    tl.to(
-        ".loaderSlideGearBottom",
-        {
-            yPercent: 40,
-            duration: 0.4,
-            ease: "power4.in",
-        },
-        "-=0.4"
     );
 };
 
@@ -134,16 +111,59 @@ const animationTransition = () => {
     let tl = gsap.timeline();
 
     tl.delay(0.1);
+
+    tl.to(".loaderSlideTop", {
+        yPercent: 0,
+        duration: 0.4,
+        ease: "power4.out",
+    });
+    tl.to(
+        ".loaderSlideBottom",
+        {
+            yPercent: 0,
+            duration: 0.4,
+            ease: "power4.out",
+        },
+        "-=0.4"
+    );
+    tl.to(
+        ".loaderSlideGearTop",
+        {
+            yPercent: 0,
+            duration: 0.4,
+            ease: "power4.out",
+        },
+        "-=0.4"
+    );
+    tl.to(
+        ".loaderSlideGearBottom",
+        {
+            yPercent: 0,
+            duration: 0.4,
+            ease: "power4.out",
+        },
+        "-=0.4"
+    );
+    tl.to(
+        ".loaderWaiting",
+        {
+            opacity: 1,
+            duration: 0.3,
+            ease: "sine.out",
+            onComplete: () => {
+                router.push({ path: hash.value });
+                animationInit();
+            },
+        },
+        "-=0.2"
+    );
 };
 
 onBeforeMount(() => {
-    if (router.currentRoute.value.path != "/") {
-        hash.value = router.currentRoute.value.path;
-    }
+    hash.value = router.currentRoute.value.path;
 });
 onMounted(() => {
     started.value = sessionStorage.getItem("started");
-    console.log(started);
     animationInit();
 });
 watch(hash, (value) => {
@@ -236,7 +256,7 @@ watch(hash, (value) => {
     </div>
 </template>
 
-<style lang="scss">
+<style scoped lang="scss">
 $mainColor: rgb(28, 32, 32); // 1c2020
 $secondColor: rgb(233, 222, 190); // e9debe
 $thirdColor: rgb(227, 223, 223); // e3dfdf
