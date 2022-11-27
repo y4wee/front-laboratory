@@ -20,35 +20,22 @@ import SmokeGreen from "~/assets/lotties/smoke_green.json";
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0 10px;
-    margin-top: 1vh;
+    width: 230px;
+    height: 230px;
+    border-radius: 50%;
     &Text {
+        position: relative;
+        top: 5px;
         font-family: "Anton", sans-serif;
-        font-size: 5vh;
+        font-size: 2rem;
         color: #f27405;
     }
     & .lottie-animation-container {
         position: absolute;
-        top: 0.5vh;
-        left: 9.4vh;
-        height: 10vh;
-        width: 10vh;
-    }
-}
-@media all and (min-width: 600px) {
-    .logo {
-        &Text {
-            position: absolute;
-            font-family: "Anton", sans-serif;
-            font-size: 7vh;
-            color: #f27405;
-        }
-        & .lottie-animation-container {
-            top: -2.5vh;
-            left: -2vh;
-            height: 14vh;
-            width: 14vh;
-        }
+        height: 70px;
+        width: 70px;
+        top: 69px;
+        right: 57px;
     }
 }
 </style>
