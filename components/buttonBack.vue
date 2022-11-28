@@ -4,54 +4,34 @@ const hash = useHash();
 </script>
 
 <template>
-    <div class="back" v-if="route.path != '/'">
-        <div class="backArrow"></div>
-        <div class="backText" @click="hash = '/'">Back</div>
+    <div class="buttonBack" v-if="route.path != '/'" @click="hash = '/'">
+        <img
+            src="~/assets/svg/home.svg"
+            alt="image du bouton pour revenir a l'accueil"
+        />
     </div>
 </template>
 
 <style lang="scss">
-.back {
+.buttonBack {
     z-index: 10;
     position: fixed;
-    bottom: 10px;
-    right: 10px;
+    bottom: 0;
     display: flex;
+    justify-content: center;
     align-items: center;
-    font-size: 2rem;
-    user-select: none;
-    animation: backTranslate 0.3s 1.7s both ease;
-    &Arrow {
-        display: inline-block;
-        height: 0;
-        width: 0;
-        border-top: 30px solid transparent;
-        border-bottom: 30px solid transparent;
-        border-right: 30px solid #f27405;
-    }
-    &Text {
-        padding: 0 20px;
-        color: #1c2020;
-        background-color: #f27405;
-        font-family: "Anton", sans-serif;
-        font-size: 1.4rem;
+    width: 100%;
+    height: 100%;
+    transform: translateY(50%);
+    backdrop-filter: blur(20px);
+    clip-path: circle(115px at 50% 50%);
+    opacity: 0;
+    & img {
+        position: relative;
+        top: -55px;
+        width: 60px;
+        height: 60px;
         cursor: pointer;
-    }
-}
-@media all and (min-width: 600px) {
-    .back {
-        top: 10px;
-        bottom: auto;
-    }
-}
-@keyframes backTranslate {
-    from {
-        opacity: 0;
-        transform: translateX(100%);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0%);
     }
 }
 </style>

@@ -262,6 +262,7 @@ $orangeColor: rgb(242, 116, 5); // f27405
         transform: translateY(40%);
         backdrop-filter: blur(20px);
         clip-path: circle(115px at 50% 50%);
+        opacity: 0;
         &Play {
             position: absolute;
             display: flex;

@@ -1,6 +1,5 @@
 <script setup>
-const hash = useHash();
-const cells = ref([
+let cells = [
     {
         index: 0,
         category: "slider",
@@ -35,25 +34,7 @@ const cells = ref([
         video: "/video/nav_legends.mp4",
         link: "/nav/legends",
     },
-    {
-        index: 4,
-        category: "",
-        image: "",
-        link: "",
-    },
-    {
-        index: 5,
-        category: "",
-        image: "",
-        link: "",
-    },
-    {
-        index: 6,
-        category: "",
-        image: "",
-        link: "",
-    },
-]);
+];
 </script>
 
 <template>
@@ -61,16 +42,7 @@ const cells = ref([
         <div class="homeLogo">
             <IndexLogo />
         </div>
-        <div class="homeCarousel">
-            <Carousel3dCarousel
-                :cells="cells"
-                :cellsNb="13"
-                :zoom="1"
-                :touchSpeed="150"
-            />
-        </div>
-        <div class="homeContainer"></div>
-        <IndexCelldetails :cells="cells" />
+        <IndexSlider :cells="cells" />
     </div>
 </template>
 
@@ -91,14 +63,19 @@ $orangeColor: rgb(242, 116, 5); // f27405
     overflow: hidden;
     user-select: none;
     background-color: #e3dfdf;
-    font-family: "Montserrat", sans-serif;
     &Logo {
         z-index: 10;
         position: fixed;
         top: 0;
         display: flex;
-        width: 100vw;
-        height: 16vh;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        transform: translateY(-40%);
+        backdrop-filter: blur(20px);
+        clip-path: circle(115px at 50% 50%);
+        opacity: 0;
         pointer-events: none;
     }
     &Scroll {
@@ -127,13 +104,6 @@ $orangeColor: rgb(242, 116, 5); // f27405
             align-items: flex-end;
             margin-bottom: 50px;
         }
-        &Logo {
-            justify-content: center;
-            top: 10vh;
-            &Back {
-                display: none;
-            }
-        }
         &Scroll {
             right: calc(50% - 73px);
             bottom: 16px;
@@ -144,5 +114,4 @@ $orangeColor: rgb(242, 116, 5); // f27405
         }
     }
 }
-
 </style>

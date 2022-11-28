@@ -2,10 +2,9 @@
 import { gsap } from "gsap";
 import Loader from "~/assets/lotties/loader.json";
 
+const route = useRoute();
 const router = useRouter();
-const index = useIndex();
 const hash = useHash();
-const loading = ref(true);
 const started = ref(null);
 
 const animationSlide = () => {
@@ -43,6 +42,46 @@ const animationSlide = () => {
         },
         "-=0.4"
     );
+    if (route.path === "/") {
+        tl.to(".homeLogo", {
+            opacity: 1,
+            duration: 0.3,
+            ease: "sine.out",
+        });
+        tl.to(
+            ".sliderTools",
+            {
+                opacity: 1,
+                duration: 0.3,
+                ease: "sine.out",
+            },
+            "-=0.3"
+        );
+        tl.to(
+            ".footerContainer",
+            {
+                opacity: 1,
+                duration: 0.3,
+                ease: "sine.out",
+            },
+            "-=0.3"
+        );
+        gsap.to(
+            ".footerOpen",
+            {
+                scale: 1,
+                duration: 0.5,
+                ease: "elastic.out",
+            },
+            "+=0.3"
+        );
+    } else {
+        tl.to(".buttonBack", {
+            opacity: 1,
+            duration: 0.3,
+            ease: "sine.out",
+        });
+    }
 };
 
 const animationInit = () => {
@@ -107,11 +146,46 @@ const animationStart = () => {
 };
 
 const animationTransition = () => {
-    loading.value = true;
     let tl = gsap.timeline();
 
     tl.delay(0.1);
 
+    if (route.path === "/") {
+        gsap.to(".footerOpen", {
+            scale: 0,
+            duration: 0.5,
+            ease: "elastic.in",
+        });
+        tl.to(".homeLogo", {
+            opacity: 0,
+            duration: 0.3,
+            ease: "sine.in",
+        });
+        tl.to(
+            ".sliderTools",
+            {
+                opacity: 0,
+                duration: 0.3,
+                ease: "sine.in",
+            },
+            "-=0.3"
+        );
+        tl.to(
+            ".footerContainer",
+            {
+                opacity: 0,
+                duration: 0.3,
+                ease: "sine.in",
+            },
+            "-=0.3"
+        );
+    } else {
+        tl.to(".buttonBack", {
+            opacity: 0,
+            duration: 0.3,
+            ease: "sine.in",
+        });
+    }
     tl.to(".loaderSlideTop", {
         yPercent: 0,
         duration: 0.4,
@@ -276,7 +350,6 @@ $orangeColor: rgb(242, 116, 5); // f27405
     height: 100%;
     font-family: "Anton", sans-serif;
     pointer-events: none;
-
     &Waiting {
         position: absolute;
         width: 230px;
