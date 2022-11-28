@@ -2,7 +2,7 @@
 
 <template>
     <main>
-        <Loader />
+        <Overlay />
         <ButtonBack />
         <slot />
         <Footer />
@@ -16,6 +16,6 @@ body {
     padding: 0;
     overflow: hidden;
     user-select: none;
-    font-family: 'Montserrat', sans-serif;
+    font-family: "Montserrat", sans-serif;
 }
 </style>

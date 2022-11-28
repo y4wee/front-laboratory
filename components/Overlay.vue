@@ -10,13 +10,13 @@ const started = ref(null);
 const animationSlide = () => {
     let tl = gsap.timeline();
 
-    tl.to(".loaderSlideTop", {
+    tl.to(".overlaySlideTop", {
         yPercent: hash.value === "/" ? -80 : -100,
         duration: 0.4,
         ease: "power4.in",
     });
     tl.to(
-        ".loaderSlideBottom",
+        ".overlaySlideBottom",
         {
             yPercent: hash.value === "/" ? 80 : 100,
             duration: 0.4,
@@ -25,7 +25,7 @@ const animationSlide = () => {
         "-=0.4"
     );
     tl.to(
-        ".loaderSlideGearTop",
+        ".overlaySlideGearTop",
         {
             yPercent: hash.value === "/" ? -40 : -50,
             duration: 0.4,
@@ -34,7 +34,7 @@ const animationSlide = () => {
         "-=0.4"
     );
     tl.to(
-        ".loaderSlideGearBottom",
+        ".overlaySlideGearBottom",
         {
             yPercent: hash.value === "/" ? 40 : 50,
             duration: 0.4,
@@ -90,7 +90,7 @@ const animationInit = () => {
     if (started.value && started.value === "true") {
         tl.delay(1);
 
-        tl.to(".loaderWaiting", {
+        tl.to(".overlayWaiting", {
             opacity: 0,
             duration: 0.3,
             ease: "sine.in",
@@ -99,13 +99,13 @@ const animationInit = () => {
     } else {
         tl.delay(2);
 
-        tl.to(".loaderWaiting", {
+        tl.to(".overlayWaiting", {
             xPercent: 100,
             duration: 0.3,
             ease: "sine.in",
         });
         tl.to(
-            ".loaderStart",
+            ".overlayStart",
             {
                 xPercent: 90,
                 duration: 0.3,
@@ -113,11 +113,11 @@ const animationInit = () => {
             },
             "-=0.3"
         );
-        tl.to(".loaderStart", {
+        tl.to(".overlayStart", {
             pointerEvents: "all",
             duration: 0,
         });
-        tl.to(".loaderWaiting", {
+        tl.to(".overlayWaiting", {
             opacity: 0,
             xPercent: 0,
             duration: 0,
@@ -128,13 +128,13 @@ const animationStart = () => {
     sessionStorage.setItem("started", "true");
     let tl = gsap.timeline();
 
-    tl.to(".loaderStartOn", {
+    tl.to(".overlayStartOn", {
         clipPath: "inset(0% 0% 0% 0%)",
         duration: 0.3,
         ease: "sine.in",
     });
     tl.to(
-        ".loaderStart",
+        ".overlayStart",
         {
             opacity: 0,
             duration: 0.3,
@@ -186,13 +186,13 @@ const animationTransition = () => {
             ease: "sine.in",
         });
     }
-    tl.to(".loaderSlideTop", {
+    tl.to(".overlaySlideTop", {
         yPercent: 0,
         duration: 0.4,
         ease: "power4.out",
     });
     tl.to(
-        ".loaderSlideBottom",
+        ".overlaySlideBottom",
         {
             yPercent: 0,
             duration: 0.4,
@@ -201,7 +201,7 @@ const animationTransition = () => {
         "-=0.4"
     );
     tl.to(
-        ".loaderSlideGearTop",
+        ".overlaySlideGearTop",
         {
             yPercent: 0,
             duration: 0.4,
@@ -210,7 +210,7 @@ const animationTransition = () => {
         "-=0.4"
     );
     tl.to(
-        ".loaderSlideGearBottom",
+        ".overlaySlideGearBottom",
         {
             yPercent: 0,
             duration: 0.4,
@@ -219,7 +219,7 @@ const animationTransition = () => {
         "-=0.4"
     );
     tl.to(
-        ".loaderWaiting",
+        ".overlayWaiting",
         {
             opacity: 1,
             duration: 0.3,
@@ -248,32 +248,32 @@ watch(hash, (value) => {
 </script>
 
 <template>
-    <div class="loader">
+    <div class="overlay">
         <div
             v-if="started === null"
-            class="loaderStart"
+            class="overlayStart"
             @click="animationStart"
         >
-            <div class="loaderStartButton loaderStartOff">START</div>
-            <div class="loaderStartButton loaderStartOn">START</div>
+            <div class="overlayStartButton overlayStartOff">START</div>
+            <div class="overlayStartButton overlayStartOn">START</div>
         </div>
 
-        <div class="loaderWaiting">
+        <div class="overlayWaiting">
             <client-only>
                 <Vue3Lottie :animationData="Loader" autoPlay loop />
             </client-only>
         </div>
 
-        <div class="loaderSlide loaderSlideTop">
-            <div class="loaderSlideBack loaderSlideBackTop"></div>
+        <div class="overlaySlide overlaySlideTop">
+            <div class="overlaySlideBack overlaySlideBackTop"></div>
             <img
-                class="loaderSlideBackTopImg"
+                class="overlaySlideBackTopImg"
                 src="~/assets/svg/gearback.svg"
                 alt="gear back top"
                 width="300px"
                 height="150px"
             />
-            <div class="loaderSlideBackTopGear">
+            <div class="overlaySlideBackTopGear">
                 <img
                     class="gearsRotate"
                     src="~/assets/svg/gear.svg"
@@ -284,16 +284,16 @@ watch(hash, (value) => {
             </div>
         </div>
 
-        <div class="loaderSlide loaderSlideBottom">
-            <div class="loaderSlideBack loaderSlideBackBottom"></div>
+        <div class="overlaySlide overlaySlideBottom">
+            <div class="overlaySlideBack overlaySlideBackBottom"></div>
             <img
-                class="loaderSlideBackBottomImg"
+                class="overlaySlideBackBottomImg"
                 src="~/assets/svg/gearback.svg"
                 alt="gear back bottom"
                 width="300px"
                 height="150px"
             />
-            <div class="loaderSlideBackBottomGear">
+            <div class="overlaySlideBackBottomGear">
                 <img
                     class="gearsRotate"
                     src="~/assets/svg/gear.svg"
@@ -304,8 +304,8 @@ watch(hash, (value) => {
             </div>
         </div>
 
-        <div class="loaderSlideGear loaderSlideGearTop">
-            <div class="loaderSlideGearBlend loaderSlideGearTopBlend">
+        <div class="overlaySlideGear overlaySlideGearTop">
+            <div class="overlaySlideGearBlend overlaySlideGearTopBlend">
                 <img
                     class="gearsRotate"
                     src="~/assets/svg/gear.svg"
@@ -316,8 +316,8 @@ watch(hash, (value) => {
             </div>
         </div>
 
-        <div class="loaderSlideGear loaderSlideGearBottom">
-            <div class="loaderSlideGearBlend loaderSlideGearBottomBlend">
+        <div class="overlaySlideGear overlaySlideGearBottom">
+            <div class="overlaySlideGearBlend overlaySlideGearBottomBlend">
                 <img
                     class="gearsRotate"
                     src="~/assets/svg/gear.svg"
@@ -338,7 +338,7 @@ $greenColor: rgb(86, 245, 105); // 56f569
 $purpleColor: rgb(245, 86, 226); // f556e2
 $orangeColor: rgb(242, 116, 5); // f27405
 
-.loader {
+.overlay {
     z-index: 100;
     position: fixed;
     bottom: 0;
