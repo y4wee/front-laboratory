@@ -5,17 +5,35 @@ const { cells } = defineProps(["cells"]);
 
 const indexSlide = ref(0);
 const indexVideo = ref(0);
-let timeOutVideo;
 
-const animationSlide = () => {
-    let percent = 100 / cells.length;
-    clearTimeout(timeOutVideo);
+const animationVideo = () => {
     let tl = gsap.timeline();
 
     tl.to(".sliderVideoContainer", {
-        clipPath: "inset(0% 0% 0% 100%)",
+        clipPath: "inset(0% 100% 0% 0%)",
+        duration: 0,
+    });
+    tl.to(".sliderVideoContainer", {
+        opacity: 1,
+        duration: 0,
+    });
+    tl.to(".sliderVideoContainer", {
+        clipPath: "inset(0% 0% 0% 0%)",
         duration: 0.3,
         ease: "sine.in",
+    });
+};
+const animationSlide = () => {
+    let percent = 100 / cells.length;
+    runTimeOut();
+    let tl = gsap.timeline();
+
+    tl.to(".sliderVideoContainer", {
+        opacity: 0,
+        // clipPath: "inset(0% 0% 0% 100%)",
+        duration: 0.1,
+        ease: "sine.in",
+        onComplete: () => (indexVideo.value = indexSlide.value),
     });
     tl.to(
         ".sliderImages",
@@ -23,39 +41,17 @@ const animationSlide = () => {
             yPercent: -percent * indexSlide.value,
             duration: 1.5,
             ease: "expo.out",
-            onComplete: animationVideo,
         },
         "-= 0.3"
     );
 };
-const animationVideo = () => {
-    indexVideo.value = indexSlide.value;
-    clearTimeout(timeOutVideo);
-    timeOutVideo = setTimeout(() => {
-        let tl = gsap.timeline();
+let timeOutVideo;
 
-        tl.to(".sliderVideoContainer", {
-            clipPath: "inset(0% 100% 0% 0%)",
-            duration: 0,
-        });
-        tl.to(".sliderVideoContainer", {
-            opacity: 1,
-            duration: 0,
-        });
-        tl.to(".sliderVideoContainer", {
-            clipPath: "inset(0% 0% 0% 0%)",
-            duration: 0.3,
-            ease: "sine.in",
-            // onComplete: playVideo,
-        });
-    }, 1000);
-};
-const playVideo = () => {
-    let video = document.querySelector("video");
-    video.play();
-};
-const test = () => {
-    console.log("test");
+const runTimeOut = () => {
+    if (timeOutVideo != undefined) {
+        clearTimeout(timeOutVideo);
+    }
+    timeOutVideo = setTimeout(animationVideo, 2000);
 };
 
 const posStart = ref(0);
@@ -106,7 +102,7 @@ const onWheel = (e) => {
 };
 
 onMounted(() => {
-    animationVideo();
+    runTimeOut();
 });
 </script>
 
@@ -165,9 +161,9 @@ onMounted(() => {
             justify-content: center;
             align-items: center;
             width: 100%;
-            height: 300px;
-            max-width: 300px;
-            margin: 0 10px;
+            height: 100%;
+            // max-width: 300px;
+            // margin: 0 10px;
             clip-path: inset(0% 100% 0% 0%);
             & video {
                 object-fit: cover;
@@ -178,7 +174,8 @@ onMounted(() => {
         }
     }
     &Images {
-        position: relative;
+        position: fixed;
+        top: 0;
         display: flex;
         align-items: center;
         flex-direction: column;
