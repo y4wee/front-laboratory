@@ -31,7 +31,6 @@ const animationSlide = () => {
 
     tl.to(".sliderVideoContainer", {
         opacity: 0,
-        // clipPath: "inset(0% 0% 0% 100%)",
         duration: 0.1,
         ease: "sine.in",
         onComplete: () => (indexVideo.value = index.value),

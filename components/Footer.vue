@@ -69,6 +69,7 @@ $orangeColor: rgb(242, 116, 5); // f27405
     align-items: center;
     height: 10%;
     width: 100%;
+    pointer-events: none;
     &Open {
         position: absolute;
         left: 0;
@@ -76,6 +77,7 @@ $orangeColor: rgb(242, 116, 5); // f27405
         width: 50px;
         transform: scale(0);
         cursor: pointer;
+        pointer-events: all;
         & img {
             width: 100%;
             height: 100%;
@@ -99,6 +101,7 @@ $orangeColor: rgb(242, 116, 5); // f27405
         & a {
             height: 50px;
             width: 50px;
+            pointer-events: all;
         }
     }
     &Dev {
@@ -113,6 +116,7 @@ $orangeColor: rgb(242, 116, 5); // f27405
         & a {
             text-decoration: none;
             color: $purpleColor;
+            pointer-events: all;
         }
     }
 }
