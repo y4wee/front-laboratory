@@ -128,6 +128,7 @@ $orangeColor: rgb(242, 116, 5); // f27405
         &Container {
             background-color: transparent;
             justify-content: space-between;
+            clip-path: inset(0% 0% 0% 0%);
         }
         &Github {
             width: calc(50% - 115px);
