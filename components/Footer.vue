@@ -22,22 +22,22 @@ const animationFooter = () => {
         <div class="footerContainer">
             <div class="footerGithub">
                 <a
-                    href="https://github.com/y4wee/front-challenge"
+                    href="https://github.com/y4wee/front-laboratory"
                     target="_blank"
+                    aria-label="lien vers le dossier github de front laboratory"
                 >
                     <client-only>
-                        <Vue3Lottie
-                            :animationData="GithubCat"
-                            autoPlay
-                            loop
-                            to="https://github.com/y4wee/front-challenge"
-                        />
+                        <Vue3Lottie :animationData="GithubCat" autoPlay loop />
                     </client-only>
                 </a>
             </div>
             <div class="footerDev">
                 Coded by
-                <a href="https://quentin-jt.net/" target="_blank">
+                <a
+                    href="https://quentin-jt.net/"
+                    target="_blank"
+                    aria-label="lien vers le site de quentin-jt"
+                >
                     Quentin-jt
                 </a>
             </div>

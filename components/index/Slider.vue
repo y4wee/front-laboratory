@@ -152,7 +152,7 @@ onMounted(() => {
             <div class="warp" aria-labelledby="warp-label">
                 <span id="warp-label" class="warp__placeholder"> Scroll </span>
 
-                <span aria-role="presentation">
+                <span>
                     <span class="warp__0"> S </span>
                     <span class="warp__1"> c </span>
                     <span class="warp__2"> r </span>
