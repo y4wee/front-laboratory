@@ -139,7 +139,10 @@ const animationStart = () => {
             opacity: 0,
             duration: 0.3,
             ease: "sine.in",
-            onComplete: animationSlide,
+            onComplete: () => {
+                started.value = "true";
+                animationSlide();
+            },
         },
         "+=0.1"
     );
