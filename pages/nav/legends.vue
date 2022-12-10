@@ -296,7 +296,6 @@ onMounted(() => {
         position: absolute;
         top: 0;
         align-self: center;
-        font-family: "Montserrat", sans-serif;
         color: #e3dfdf;
         & a {
             color: rgb(245, 86, 226);

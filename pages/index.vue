@@ -3,25 +3,20 @@ let cells = [
     {
         index: 0,
         category: "slider",
-        details: ["Gsap", "Scroll / Touch", "Double Transition"],
         image: "/img/home/slider_exoape.jpg",
         video: "/video/slider_exoape.mp4",
         link: "/slider/exo-ape",
-        github: "",
     },
     {
         index: 1,
         category: "carousel",
-        details: ["Perspective3D", "Scroll / Touch", "Transition"],
         image: "/img/home/carousel_3d.jpg",
         video: "/video/carousel_3d.mp4",
         link: "/carousel/3d",
-        github: "",
     },
     {
         index: 2,
         category: "canvas",
-        details: ["Pixels", "Particles", "Physics"],
         image: "/img/home/canvas_hat.png",
         video: "/video/canvas_hat.mp4",
         link: "/canvas/particles-hat",
@@ -29,10 +24,16 @@ let cells = [
     {
         index: 3,
         category: "nav",
-        details: ["Gsap", "Slider", "Scroll / Touch"],
         image: "/img/home/nav_legends.jpg",
         video: "/video/nav_legends.mp4",
         link: "/nav/legends",
+    },
+    {
+        index: 4,
+        category: "In-progress",
+        // image: "/img/home/nav_legends.jpg",
+        // video: "/video/nav_legends.mp4",
+        link: "/grid/test",
     },
 ];
 </script>

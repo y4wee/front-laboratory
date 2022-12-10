@@ -129,7 +129,7 @@ onMounted(() => {
                 v-for="cell in cells"
                 :key="cell.index"
             >
-                <img :src="cell.image" alt="test" />
+                <img :src="cell?.image" alt="image de présentation" />
             </div>
             <div class="sliderImagesOverlay"></div>
         </div>
@@ -179,7 +179,7 @@ onMounted(() => {
             <div class="sliderCategoryContainer">
                 <p v-for="cell in cells" :key="cell.index">
                     {{
-                        cell.category
+                        cell?.category
                             ? cell.category[0].toUpperCase() +
                               cell.category.substring(1)
                             : "..."

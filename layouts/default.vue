@@ -1,7 +1,28 @@
-<script setup></script>
+<script setup>
+const errorScreen = ref(false);
+const mobile = useMobile();
+
+const checkScreen = () => {
+    if (window.innerWidth < 700 && !mobile.value) {
+        mobile.value = true;
+        window.location.reload();
+    }
+    if (window.innerWidth >= 700 && mobile.value) {
+        mobile.value = false;
+        window.location.reload();
+    }
+};
+
+onMounted(() => {
+    if (window.innerWidth < 700 && !mobile.value) {
+        mobile.value = true;
+    }
+    window.addEventListener("resize", checkScreen);
+});
+</script>
 
 <template>
-    <main>
+    <main v-if="!errorScreen">
         <Overlay />
         <ButtonBack />
         <slot />
@@ -17,5 +38,7 @@ body {
     overflow: hidden;
     user-select: none;
     font-family: "Montserrat", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 </style>
