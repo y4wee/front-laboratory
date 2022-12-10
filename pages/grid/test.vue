@@ -422,7 +422,13 @@ onMounted(() => {
                         class="gridSliderCellImage"
                         loading="lazy"
                     />
-                    <div class="gridSliderCellOverlay"></div>
+                    <div
+                        class="gridSliderCellOverlay"
+                        v-show="
+                            cellSorted[sliderIndex].index !== cell.index &&
+                            !modeMosaique
+                        "
+                    ></div>
                 </div>
             </div>
         </div>
@@ -564,7 +570,8 @@ $orangeColor: rgb(242, 116, 5); // f27405
                 width: 100%;
                 height: 100%;
                 background-color: black;
-                opacity: 0.75;
+                opacity: 0;
+                animation: overlayOpacity 0.7s ease-in-out forwards;
             }
         }
     }
@@ -597,6 +604,11 @@ $orangeColor: rgb(242, 116, 5); // f27405
     }
     &Cell5 {
         grid-area: 8/7;
+    }
+}
+@keyframes overlayOpacity {
+    to {
+        opacity: 0.75;
     }
 }
 </style>
