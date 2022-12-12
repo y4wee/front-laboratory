@@ -309,8 +309,6 @@ const animationTransitionMode = () => {
         let gridCells = gsap.utils.toArray(".gridCell");
 
         gridCells.forEach((gridCell, index) => {
-            console.log(index, gridCell.offsetTop, gridCell.offsetLeft);
-
             gsap.to(`.gridSliderCell${index}`, {
                 xPercent: 0,
                 yPercent: 0,
@@ -357,9 +355,24 @@ const animationTransitionMode = () => {
         modeSlider.value = false;
     }
 };
+const cellHovered = ref(false);
+const cellHoveredIndex = ref([]);
 
+const hoverOn = (e) => {
+    if (modeMosaique.value) {
+        cellHoveredIndex.value.push(e.target.dataset.index);
+        cellHovered.value = true;
+    }
+};
+const hoverOff = (e) => {
+    if (modeMosaique.value) {
+        cellHoveredIndex.value.splice(0, 1);
+        cellHovered.value = false;
+    }
+};
 onMounted(() => {
     setTimeout(animationSliderInit, 100);
+    // init slidercell index
     sliderIndex.value = cellSorted.findIndex((element) => element.index === 0);
 });
 </script>
@@ -414,6 +427,9 @@ onMounted(() => {
                     v-for="cell in cells"
                     :key="cell.index"
                     :class="'gridSliderCell gridSliderCell' + cell.index"
+                    @mouseover="hoverOn"
+                    @mouseout="hoverOff"
+                    :data-index="cell.index"
                 >
                     <img
                         v-if="cell.image"
@@ -423,10 +439,15 @@ onMounted(() => {
                         loading="lazy"
                     />
                     <div
-                        class="gridSliderCellOverlay"
-                        v-show="
-                            cellSorted[sliderIndex].index !== cell.index &&
-                            !modeMosaique
+                        :class="
+                            (cellSorted[sliderIndex].index !== cell.index &&
+                                modeSlider) ||
+                            (cellHovered &&
+                                !cellHoveredIndex.includes(
+                                    cell.index.toString()
+                                ))
+                                ? 'gridSliderCellOverlay gridSliderCellOverlayOn'
+                                : 'gridSliderCellOverlay'
                         "
                     ></div>
                 </div>
@@ -569,9 +590,13 @@ $orangeColor: rgb(242, 116, 5); // f27405
                 position: absolute;
                 width: 100%;
                 height: 100%;
-                background-color: black;
                 opacity: 0;
-                animation: overlayOpacity 0.7s ease-in-out forwards;
+                background-color: black;
+                transition: opacity 0.7s ease-in-out;
+                pointer-events: none;
+                &On {
+                    opacity: 0.8;
+                }
             }
         }
     }
@@ -606,9 +631,14 @@ $orangeColor: rgb(242, 116, 5); // f27405
         grid-area: 8/7;
     }
 }
-@keyframes overlayOpacity {
+@keyframes overlayOpacityOn {
     to {
-        opacity: 0.75;
+        opacity: 1;
+    }
+}
+@keyframes overlayOpacityOff {
+    to {
+        opacity: 0;
     }
 }
 </style>
