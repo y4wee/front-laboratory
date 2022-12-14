@@ -13,7 +13,6 @@
     "sass-loader": "^10.3.1"
   },
   "dependencies": {
-    "@vercel/analytics": "^0.1.6",
     "gsap": "^3.11.3",
     "vue3-lottie": "^2.3.0"
   }
