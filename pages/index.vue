@@ -30,10 +30,10 @@ let cells = [
     },
     {
         index: 4,
-        category: "In-progress",
-        // image: "/img/home/nav_legends.jpg",
-        // video: "/video/nav_legends.mp4",
-        link: "/grid/test",
+        category: "grid",
+        image: "/img/home/grid_miles.jpg",
+        video: "/video/grid_miles.mp4",
+        link: "/grid/miles",
     },
 ];
 </script>

@@ -1,38 +1,42 @@
 <script setup>
 import { gsap } from "gsap";
-import ButtonBack from "~~/components/buttonBack.vue";
 const mobile = useMobile();
 
 let cells = [
     {
         index: 0,
-        image: "/img/slider/exo-ape/img-1.jpg",
+        video: "/video/miles/miles1.mp4",
         position: 0,
     },
     {
         index: 1,
-        image: "/img/slider/exo-ape/img-2.jpg",
+        video: "/video/miles/miles2.mp4",
         position: 1,
     },
     {
         index: 2,
-        image: "/img/slider/exo-ape/img-3.jpg",
+        video: "/video/miles/miles3.mp4",
         position: -1,
     },
     {
         index: 3,
-        image: "/img/slider/exo-ape/img-4.jpg",
+        video: "/video/miles/miles4.mp4",
         position: 2,
     },
     {
         index: 4,
-        image: "/img/slider/exo-ape/img-5.jpg",
+        video: "/video/miles/miles5.mp4",
         position: -2,
     },
     {
         index: 5,
-        image: "/img/slider/exo-ape/img-6.jpg",
+        video: "/video/miles/miles6.mp4",
         position: 3,
+    },
+    {
+        index: 6,
+        video: "/video/miles/miles7.mp4",
+        position: -3,
     },
 ];
 let cellSorted = [...cells].sort((a, b) => {
@@ -431,13 +435,19 @@ onMounted(() => {
                     @mouseout="hoverOff"
                     :data-index="cell.index"
                 >
-                    <img
-                        v-if="cell.image"
-                        :src="cell.image"
-                        alt="image slider"
-                        class="gridSliderCellImage"
-                        loading="lazy"
-                    />
+                    <client-only>
+                        <video
+                            v-if="cell.video"
+                            :src="cell.video"
+                            alt="video grid slider miles morales"
+                            class="gridSliderCellVideo"
+                            playsInline
+                            muted
+                            loop
+                            autoplay
+                        ></video>
+                    </client-only>
+
                     <div
                         :class="
                             (cellSorted[sliderIndex].index !== cell.index &&
@@ -580,7 +590,7 @@ $orangeColor: rgb(242, 116, 5); // f27405
             max-height: 300px;
             opacity: 0;
             clip-path: inset(10px calc(0% + 10px) 10px 10px);
-            &Image {
+            &Video {
                 object-fit: cover;
                 width: 100%;
                 height: 100%;
@@ -628,7 +638,10 @@ $orangeColor: rgb(242, 116, 5); // f27405
         grid-area: 5/6;
     }
     &Cell5 {
-        grid-area: 8/7;
+        grid-area: 6/9;
+    }
+    &Cell6 {
+        grid-area: 5/9;
     }
 }
 @keyframes overlayOpacityOn {
