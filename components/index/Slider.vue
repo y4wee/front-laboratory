@@ -103,6 +103,9 @@ const onWheel = (e) => {
 onMounted(() => {
     setTimeout(animationSlide, 500);
 });
+onUnmounted(() => {
+    clearTimeout(timeOutVideo);
+});
 </script>
 
 <template>
