@@ -24,7 +24,7 @@ onMounted(() => {
             class="glassTopRef"
             v-if="route.path !== '/' && $projects[projectIndex].refName"
         >
-            <p :style="`color: ${$projects[projectIndex].refName}`">
+            <p :style="`color: ${$projects[projectIndex].refColor}`">
                 Inspired by
             </p>
             <a :href="$projects[projectIndex].refLink" target="_blank">{{
