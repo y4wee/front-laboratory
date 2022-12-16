@@ -117,6 +117,5 @@ const transitionAfter = () => {
     width: 100vw;
     height: 100vh;
     overflow: hidden;
-    font-family: "Montserrat", sans-serif;
 }
 </style>

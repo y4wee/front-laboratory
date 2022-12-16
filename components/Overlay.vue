@@ -34,6 +34,15 @@ const animationSlide = () => {
         "-=0.4"
     );
     tl.to(
+        ".glassTop",
+        {
+            yPercent: hash.value === "/" ? -40 : -50,
+            duration: 0.4,
+            ease: "power4.in",
+        },
+        "-=0.4"
+    );
+    tl.to(
         ".overlaySlideGearBottom",
         {
             yPercent: hash.value === "/" ? 40 : 50,
@@ -43,20 +52,6 @@ const animationSlide = () => {
         "-=0.4"
     );
     if (route.path === "/") {
-        tl.to(".homeLogo", {
-            opacity: 1,
-            duration: 0.3,
-            ease: "sine.out",
-        });
-        tl.to(
-            ".sliderTools",
-            {
-                opacity: 1,
-                duration: 0.3,
-                ease: "sine.out",
-            },
-            "-=0.3"
-        );
         tl.to(
             ".footerContainer",
             {
@@ -66,7 +61,7 @@ const animationSlide = () => {
             },
             "-=0.3"
         );
-        gsap.to(
+        tl.to(
             ".footerOpen",
             {
                 scale: 1,
@@ -75,12 +70,6 @@ const animationSlide = () => {
             },
             "+=0.3"
         );
-    } else {
-        tl.to(".buttonBack", {
-            opacity: 1,
-            duration: 0.3,
-            ease: "sine.out",
-        });
     }
 };
 
@@ -159,20 +148,6 @@ const animationTransition = () => {
             duration: 0.5,
             ease: "elastic.in",
         });
-        tl.to(".homeLogo", {
-            opacity: 0,
-            duration: 0.3,
-            ease: "sine.in",
-        });
-        tl.to(
-            ".sliderTools",
-            {
-                opacity: 0,
-                duration: 0.3,
-                ease: "sine.in",
-            },
-            "-=0.3"
-        );
         tl.to(
             ".footerContainer",
             {
@@ -182,12 +157,6 @@ const animationTransition = () => {
             },
             "-=0.3"
         );
-    } else {
-        tl.to(".buttonBack", {
-            opacity: 0,
-            duration: 0.3,
-            ease: "sine.in",
-        });
     }
     tl.to(".overlaySlideTop", {
         yPercent: 0,
@@ -205,6 +174,15 @@ const animationTransition = () => {
     );
     tl.to(
         ".overlaySlideGearTop",
+        {
+            yPercent: 0,
+            duration: 0.4,
+            ease: "power4.out",
+        },
+        "-=0.4"
+    );
+    tl.to(
+        ".glassTop",
         {
             yPercent: 0,
             duration: 0.4,
@@ -237,7 +215,7 @@ const animationTransition = () => {
 };
 
 onBeforeMount(() => {
-    hash.value = router.currentRoute.value.path;
+    hash.value = route.path;
 });
 onMounted(() => {
     started.value = sessionStorage.getItem("started");

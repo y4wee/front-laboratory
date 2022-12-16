@@ -23,8 +23,9 @@ onMounted(() => {
 
 <template>
     <main v-if="!errorScreen">
+        <GlassBottom />
+        <GlassTop />
         <Overlay />
-        <ButtonBack />
         <slot />
         <Footer />
     </main>

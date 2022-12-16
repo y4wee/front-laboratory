@@ -301,7 +301,7 @@ const animationTransitionMode = () => {
             duration: duration,
             ease: "sine.out",
         });
-        gsap.to(".gridSliderCellImage", {
+        gsap.to(".gridSliderCellVideo", {
             xPercent: 0,
             duration: duration,
             ease: "sine.out",
@@ -329,7 +329,7 @@ const animationTransitionMode = () => {
             duration: duration,
             ease: "sine.out",
         });
-        gsap.to(".gridSliderCellImage", {
+        gsap.to(".gridSliderCellVideo", {
             xPercent: -25,
             duration: duration,
             ease: "sine.out",
@@ -464,17 +464,10 @@ onMounted(() => {
             </div>
         </div>
 
-        <div class="gridSwitch">
-            <div class="gridSwitchButton" @click="animationTransitionMode">
-                <div class="gridSwitchEach gridSwitchLeft"></div>
-                <div class="gridSwitchEach gridSwitchMid"></div>
-                <div class="gridSwitchEach gridSwitchRight"></div>
-            </div>
-        </div>
-
-        <div class="gridInspired">
-            Inspired by
-            <a href="https://theud.tv/" target="_blank">theud.tv</a>
+        <div class="gridSwitch" @click="animationTransitionMode">
+            <div class="gridSwitchEach gridSwitchLeft"></div>
+            <div class="gridSwitchEach gridSwitchMid"></div>
+            <div class="gridSwitchEach gridSwitchRight"></div>
         </div>
     </div>
 </template>
@@ -500,24 +493,12 @@ $orangeColor: rgb(242, 116, 5); // f27405
     &Switch {
         z-index: 10;
         position: fixed;
-        bottom: 0;
+        top: 70px;
+        height: 40px;
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 100%;
-        height: 100%;
-        transform: translateY(-50%);
-        backdrop-filter: blur(20px);
-        clip-path: circle(115px at 50% 50%);
-        &Button {
-            position: relative;
-            top: 80px;
-            height: 40px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-        }
+        cursor: pointer;
         &Each {
             width: 20px;
             height: 10px;
@@ -610,17 +591,6 @@ $orangeColor: rgb(242, 116, 5); // f27405
             }
         }
     }
-    &Inspired {
-        z-index: 10;
-        position: fixed;
-        top: 0;
-        color: $thirdColor;
-        & a {
-            color: $purpleColor;
-            font-weight: bold;
-        }
-    }
-
     // positions des sliderCells en mode mosaique
     &Cell0 {
         grid-area: 6/7;
