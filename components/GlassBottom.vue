@@ -228,8 +228,7 @@ $orangeColor: rgb(242, 116, 5); // f27405
     position: relative;
     width: 230px;
     height: 230px;
-    font-family: "Satisfy", cursive;
-    font-size: 1.5rem;
+    font-weight: bold;
     color: $orangeColor;
 }
 
@@ -240,31 +239,31 @@ $orangeColor: rgb(242, 116, 5); // f27405
 
 .warp__0 {
     transform-origin: 50% 17px;
-    transform: translate(90.2902px, 9.4093px) rotate(-0.243373rad);
+    transform: translate(84.2902px, 14.4093px) rotate(-0.243373rad);
 }
 
 .warp__1 {
     transform-origin: 50% 17px;
-    transform: translate(101.5336px, 7.58240000000001px) rotate(-0.109092rad);
+    transform: translate(97.5336px, 11.08240000000001px) rotate(-0.109092rad);
 }
 
 .warp__2 {
     transform-origin: 50% 17px;
-    transform: translate(110.7481px, 7.14019999999999px) rotate(0.018246rad);
+    transform: translate(109.7481px, 10.04019999999999px) rotate(0.018246rad);
 }
 
 .warp__3 {
     transform-origin: 50% 17px;
-    transform: translate(120.953px, 7.9375px) rotate(0.145485rad);
+    transform: translate(117.953px, 10.5375px) rotate(0.145485rad);
 }
 
 .warp__4 {
     transform-origin: 50% 17px;
-    transform: translate(130.1776px, 9.349500000000006px) rotate(0.240241rad);
+    transform: translate(132.1776px, 12.049500000000006px) rotate(0.240241rad);
 }
 
 .warp__5 {
     transform-origin: 50% 17px;
-    transform: translate(135.543px, 9.866600000000005px) rotate(0.310651rad);
+    transform: translate(139.543px, 14.066600000000005px) rotate(0.310651rad);
 }
 </style>

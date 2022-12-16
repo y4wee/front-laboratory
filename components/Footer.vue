@@ -10,7 +10,7 @@ const animationFooter = () => {
         clipPath: footerOn.value
             ? "inset(100% 0% 0% 0%)"
             : "inset(0% 0% 0% 0%)",
-        duration: 0.3,
+        duration: 0.25,
         ease: "sine.in",
     });
     footerOn.value = !footerOn.value;

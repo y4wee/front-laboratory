@@ -24,21 +24,6 @@ $orangeColor: rgb(242, 116, 5); // f27405
     height: 100vh;
     overflow: hidden;
     user-select: none;
-    background-color: #e3dfdf;
-    &Logo {
-        z-index: 10;
-        position: fixed;
-        top: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-        height: 100%;
-        transform: translateY(-40%);
-        backdrop-filter: blur(20px);
-        clip-path: circle(115px at 50% 50%);
-        opacity: 0;
-        pointer-events: none;
-    }
+    background-color: $thirdColor;
 }
 </style>
